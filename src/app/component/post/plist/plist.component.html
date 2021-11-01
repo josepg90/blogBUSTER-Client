@@ -1,0 +1,72 @@
+<app-menu></app-menu>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col">
+            <h2><i class="fas fa-file-alt"></i> Listado de Posts</h2>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col">
+            <h4>Registros: {{totalElements}}</h4>
+            <h4>Paginas: {{totalPages}}</h4>
+            <h4>RPP: {{rpp}}</h4>
+
+
+            <div class="row my-5">
+                <div class="col-md-6 dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                     Registros por página: {{rpp}}
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                      <li [ngClass]="{'active': (rpp == 2)}"><a class="dropdown-item" (click)="rpp=(2);getPage()">2</a></li>
+                      <li [ngClass]="{'active': (rpp == 5)}"><a class="dropdown-item" (click)="rpp=(5);getPage()">5</a></li>
+                      <li [ngClass]="{'active': (rpp == 10)}"><a class="dropdown-item" (click)="rpp=(10);getPage()">10</a></li>
+                    </ul>
+                </div>
+            <div class="col-md-6">
+                <nav aria-label="pagination">
+                <ul class="pagination justify-content-end">
+                    <li class="page-item" aria-current="page" *ngFor="let p of barraPaginacion"
+                        [ngClass]="{'active': (page+'' == p)}">
+                        <a class="page-link" (click)="page=(+p);jumpToPage()" href="#">{{p}}</a>
+                    </li>
+                </ul>
+                </nav>
+            </div>
+            </div>
+
+            <table class="table table-striped table-hover mb-5">
+                <thead>
+                    <tr>
+                      <th scope="col">ID<i class="fas fa-arrow-up ms-1"></i><i class="fas fa-arrow-down"></i></th>
+                      <th scope="col">Título<i class="fas fa-arrow-up ms-1"></i><i class="fas fa-arrow-down"></i></th>
+                      <th scope="col">Cuerpo<i class="fas fa-arrow-up ms-1"></i><i class="fas fa-arrow-down"></i></th>
+                      <th scope="col">Fecha</th>
+                      <th scope="col">Etiquetas<i class="fas fa-arrow-up ms-1"></i><i class="fas fa-arrow-down"></i></th>
+                      <th scope="col">Visible</th>
+                      <th><a href="http://localhost:4200/new"><button type="button" class="btn btn-primary"><i class="fas fa-plus"></i></button></a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let fila of aPosts">
+                    <td style="width: 10%; text-align: center;">{{fila.id}}</td>
+                    <td style="width: 25%">{{fila.titulo | trim}}</td>
+                    <td style="width: 25%">{{fila.cuerpo | trim}}</td>
+                    <td style="width: 15%">{{fila.fecha | dateTime}}</td>
+                    <td style="width: 20%">{{fila.etiquetas}}</td>
+                    <td style="width: 5%" innerHtml="{{fila.visible | showBoolean}}"></td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a href="http://localhost:4200/view/{{fila.id}}"><button type="button" class="btn btn-success"><i class="far fa-eye"></i></button></a>
+                        <a href="http://localhost:4200/update/{{fila.id}}"><button type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button></a>
+                        <a href="http://localhost:4200/delete/{{fila.id}}"><button type="button" class="btn btn-danger"><i class="fas fa-times"></i></button></a>
+                    </div>
+                </tr>
+                
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>

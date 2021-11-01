@@ -1,0 +1,42 @@
+.shadow {
+    padding: 10px;
+    text-align: center;
+}
+
+.container {
+    width:70%;
+}
+
+.col-sm-6 {
+   margin-left: 0;
+}
+
+* {
+    margin:auto;
+}
+
+label {
+    font-size: large;
+    text-shadow: 1px 1px 1px black;
+    text-align: left;
+    margin-right: 0;
+}
+
+button {
+    margin:0 auto;
+}
+
+input {
+    width: 485px;
+}
+
+.form-check-input {
+    width:1.5em !important;
+    height:1.5em !important;
+}
+
+.container {
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    padding: 0px 20px;
+}
