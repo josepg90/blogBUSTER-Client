@@ -17,6 +17,9 @@ export class PlistComponent implements OnInit {
   page: number;
   rpp:number;
   barraPaginacion: string[];
+  param: string;
+  direction: string;
+  
   //id:number;
 
   constructor(
@@ -26,22 +29,25 @@ export class PlistComponent implements OnInit {
   ) {
     this.page = 1;
     this.rpp = 3;
-    this.getPage();
-    //this.id = this.oActivatedRoute.snapshot.params.id;
     
+    this.param = this.oActivatedRoute.snapshot.params.param;
+    this.direction = this.oActivatedRoute.snapshot.params.direction;
+    this.param = "id";
+    this.direction = "ASC";
+    this.getPage();
   }
 
   ngOnInit(): void {
   }
 
+ 
   getPage = () => {
-    this.oPostService.getPage(this.rpp, this.page).subscribe((oPage: IPage) => {
+    this.oPostService.getPage(this.rpp, this.page, this.param, this.direction).subscribe((oPage: IPage) => {
       this.aPosts = oPage.content;
       this.totalElements = oPage.totalElements;
       this.totalPages = oPage.totalPages;
       this.barraPaginacion = this.oPaginationService.pagination(this.totalPages, this.page);
     })
-
   }
 
   jumpToPage = () => {

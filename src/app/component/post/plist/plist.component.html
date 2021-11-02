@@ -13,7 +13,7 @@
             <h4>RPP: {{rpp}}</h4>
 
 
-            <div class="row my-5">
+            <div class="row my-4">
                 <div class="col-md-6 dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                      Registros por página: {{rpp}}
@@ -39,12 +39,30 @@
             <table class="table table-striped table-hover mb-5">
                 <thead>
                     <tr>
-                      <th scope="col">ID<i class="fas fa-arrow-up ms-1"></i><i class="fas fa-arrow-down"></i></th>
-                      <th scope="col">Título<i class="fas fa-arrow-up ms-1"></i><i class="fas fa-arrow-down"></i></th>
-                      <th scope="col">Cuerpo<i class="fas fa-arrow-up ms-1"></i><i class="fas fa-arrow-down"></i></th>
+                      <th scope="col">ID
+                          <div class="btn-group boton" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-primary btn-sm" (click)='param="id";direction="ASC";getPage();'><i class="fas fa-arrow-up ms-1"></i></button>
+                            <button type="button" class="btn btn-primary btn-sm" (click)='param="id";direction="DESC";getPage();'><i class="fas fa-arrow-down"></i></button>
+                          </div>
+                      </th>
+                      <th scope="col">Título
+                          <div class="btn-group boton" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-primary btn-sm" (click)='param="titulo";direction="ASC";getPage();'><i class="fas fa-arrow-up ms-1"></i></button>
+                            <button type="button" class="btn btn-primary btn-sm" (click)='param="titulo";direction="DESC";getPage();'><i class="fas fa-arrow-down"></i></button>
+                          </div>
+                      </th>                
+                      <th scope="col">Cuerpo<i class="fas fa-arrow-up ms-1" (click)='param="cuerpo";direction="ASC";getPage();'></i><i class="fas fa-arrow-down" (click)='param="cuerpo";direction="DESC";getPage();'></i></th>
+                      
+                      
                       <th scope="col">Fecha</th>
-                      <th scope="col">Etiquetas<i class="fas fa-arrow-up ms-1"></i><i class="fas fa-arrow-down"></i></th>
+                      
+                      
+                      <th scope="col">Etiquetas<i class="fas fa-arrow-up ms-1" (click)='param="etiquetas";direction="ASC";getPage();'></i><i class="fas fa-arrow-down" (click)='param="etiquetas";direction="DESC";getPage();'></i></th>
+                      
+                      
                       <th scope="col">Visible</th>
+                      
+                      
                       <th><a href="http://localhost:4200/new"><button type="button" class="btn btn-primary"><i class="fas fa-plus"></i></button></a></th>
                     </tr>
                 </thead>
