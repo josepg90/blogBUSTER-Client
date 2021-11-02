@@ -51,18 +51,25 @@
                             <button type="button" class="btn btn-primary btn-sm" (click)='param="titulo";direction="DESC";getPage();'><i class="fas fa-arrow-down"></i></button>
                           </div>
                       </th>                
-                      <th scope="col">Cuerpo<i class="fas fa-arrow-up ms-1" (click)='param="cuerpo";direction="ASC";getPage();'></i><i class="fas fa-arrow-down" (click)='param="cuerpo";direction="DESC";getPage();'></i></th>
-                      
-                      
-                      <th scope="col">Fecha</th>
-                      
-                      
-                      <th scope="col">Etiquetas<i class="fas fa-arrow-up ms-1" (click)='param="etiquetas";direction="ASC";getPage();'></i><i class="fas fa-arrow-down" (click)='param="etiquetas";direction="DESC";getPage();'></i></th>
-                      
-                      
-                      <th scope="col">Visible</th>
-                      
-                      
+                      <th scope="col">Cuerpo
+                        <div class="btn-group boton" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-primary btn-sm" (click)='param="cuerpo";direction="ASC";getPage();'><i class="fas fa-arrow-up ms-1"></i></button>
+                            <button type="button" class="btn btn-primary btn-sm" (click)='param="cuerpo";direction="DESC";getPage();'><i class="fas fa-arrow-down"></i></button>
+                        </div>
+                      </th>
+                      <th scope="col">Fecha
+                        <div class="btn-group boton" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-primary btn-sm" (click)='param="fecha";direction="ASC";getPage();'><i class="fas fa-arrow-up ms-1"></i></button>
+                            <button type="button" class="btn btn-primary btn-sm" (click)='param="fecha";direction="DESC";getPage();'><i class="fas fa-arrow-down"></i></button>
+                        </div>
+                      </th>                                          
+                      <th scope="col">Etiquetas
+                        <div class="btn-group boton" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-primary btn-sm" (click)='param="etiquetas";direction="ASC";getPage();'><i class="fas fa-arrow-up ms-1"></i></button>
+                            <button type="button" class="btn btn-primary btn-sm" (click)='param="etiquetas";direction="DESC";getPage();'><i class="fas fa-arrow-down"></i></button>
+                        </div>
+                      </th>                                        
+                      <th scope="col">Visible</th>                                           
                       <th><a href="http://localhost:4200/new"><button type="button" class="btn btn-primary"><i class="fas fa-plus"></i></button></a></th>
                     </tr>
                 </thead>
