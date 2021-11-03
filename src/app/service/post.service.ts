@@ -48,16 +48,16 @@ export class PostService {
       catchError(this.handleError));
   }
   
-  getPage(rpp: number, page: number, param: String, direction: String): Observable<IPage> {    
-    return this.http.get<IPage>(this.sURL + "?rpp=" + rpp + "&page=" + page + "&param=" + param + "&direction=" + direction, httpOptions);
+  getPage(rpp: number, page: number, param: String, direction: String, filtro: String): Observable<IPage> {    
+    return this.http.get<IPage>(this.sURL + "?rpp=" + rpp + "&page=" + page + "&param=" + param + "&direction=" + direction  + "&filtro=" + filtro, httpOptions);
   }
 
   getPost(id: number): Observable<IPost> {
     return this.http.get<IPost>(this.sURL + "?id=" + id, httpOptions);
   }
 
-  create(newData: string): Observable<String> {
-    return this.http.post<String>(this.sURL, newData, httpOptions)
+  create(newData: IAdd): Observable<number> {
+    return this.http.post<number>(this.sURL, newData, httpOptions)
   }
 
   delete(id: number): Observable<Number> {

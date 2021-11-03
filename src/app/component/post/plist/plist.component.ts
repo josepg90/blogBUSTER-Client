@@ -1,8 +1,9 @@
 import { PaginationService } from './../../../service/pagination.service';
 import { PostService } from './../../../service/post.service';
 import { Component, OnInit } from '@angular/core';
-import { IPage, IPost } from 'src/app/model/model-interfaces';
-import { ActivatedRoute } from '@angular/router';
+import { IFecha, IPage, IPost } from 'src/app/model/model-interfaces';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-plist',
@@ -19,12 +20,20 @@ export class PlistComponent implements OnInit {
   barraPaginacion: string[];
   param: string;
   direction: string;
-  
+  strResult: string = "";
+  id: number;
+  titulo: string;
+  cuerpo: string;
+  fecha: IFecha;
+  etiquetas: string;
+  visible: boolean;
+  filtro: string;
   //id:number;
 
   constructor(
     private oPaginationService: PaginationService,
     private oPostService: PostService,
+    private oRouter: Router,
     private oActivatedRoute: ActivatedRoute
   ) {
     this.page = 1;
@@ -34,6 +43,7 @@ export class PlistComponent implements OnInit {
     this.direction = this.oActivatedRoute.snapshot.params.direction;
     this.param = "id";
     this.direction = "ASC";
+    this.filtro = "";
     this.getPage();
   }
 
@@ -42,12 +52,17 @@ export class PlistComponent implements OnInit {
 
  
   getPage = () => {
-    this.oPostService.getPage(this.rpp, this.page, this.param, this.direction).subscribe((oPage: IPage) => {
+    this.oPostService.getPage(this.rpp, this.page, this.param, this.direction, this.filtro).subscribe((oPage: IPage) => {
       this.aPosts = oPage.content;
       this.totalElements = oPage.totalElements;
       this.totalPages = oPage.totalPages;
       this.barraPaginacion = this.oPaginationService.pagination(this.totalPages, this.page);
+      console.log(this.filtro);
     })
+  }
+
+  onSearchChange(searchValue: string): void {  
+    console.log(searchValue);
   }
 
   jumpToPage = () => {
@@ -55,7 +70,26 @@ export class PlistComponent implements OnInit {
     return false;
   }
   
+  new = (id: number, titulo: string, cuerpo: string, fecha: IFecha, etiquetas: string, visible: boolean):void => {
+      this.id=id;
+      this.titulo=titulo;
+      this.cuerpo=cuerpo;
+      this.fecha=fecha;
+      this.etiquetas=etiquetas;
+      this.visible=visible;
+      this.openModal();
+    
+  }
 
+  eventsSubject: Subject<void> = new Subject<void>();
+
+  openModal():void {
+    this.eventsSubject.next();
+  }
+
+  closeModal():void {
+    this.oRouter.navigate(["/plist"]);
+  }
   /*getDropdown = () => {
     this.oPostService.getPage(this.rpp, this.page).subscribe((oPage: IPage) => {
       this.aPosts = oPage.content;

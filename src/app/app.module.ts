@@ -22,6 +22,8 @@ import { ViewComponent } from './component/view/view.component';
 import { NewComponent } from './component/post/new/new.component';
 import { UpdateComponent } from './component/post/update/update.component';
 import { DeleteComponent } from './component/post/delete/delete.component';
+import { ModalComponent } from './component/modal/modal.component';
+import { DateTimeService } from './service/datetime.service';
 
 
 @NgModule({
@@ -39,7 +41,8 @@ import { DeleteComponent } from './component/post/delete/delete.component';
     NewComponent,
     UpdateComponent,
     DeleteComponent,
-    ShowBoolean
+    ShowBoolean,
+    ModalComponent
   ],
   imports: [
     HttpClientModule,
@@ -52,7 +55,8 @@ import { DeleteComponent } from './component/post/delete/delete.component';
     SessionService,
     SessionResolver,
     PostService,
-    PaginationService
+    PaginationService,
+    DateTimeService
   ],
   bootstrap: [AppComponent]
 })

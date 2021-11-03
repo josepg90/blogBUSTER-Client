@@ -32,7 +32,7 @@ export interface IPage {
 }
 
 export interface IAdd {
-    
+    id: number,
     titulo: string,
     cuerpo: string,
     fecha: string,

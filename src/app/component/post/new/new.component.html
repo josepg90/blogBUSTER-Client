@@ -67,3 +67,5 @@
         </div>
     </div>    
 </div>
+
+<app-modal [show]="eventsSubject.asObservable()" [body]="strResult" (close)="closeModal()"> </app-modal>

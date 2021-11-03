@@ -7,7 +7,7 @@ td{
 div.btn-group{
     box-shadow: none;
 }
-th{
+th, .sombra{
     font-size: large;
     text-align: center;
     text-shadow: 1px 1px 1px black;
