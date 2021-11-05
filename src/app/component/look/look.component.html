@@ -1,0 +1,22 @@
+<div class="row justify-content-center">
+    <div class="col-md">
+        <div class="card my-5">
+            <div class="card-body">
+                <h5 class="card-title"><a>{{titulo}}</a></h5>
+                <div class="postcard__bar"></div>
+                <p class="card-text">{{cuerpo}}</p>
+                
+            </div>
+            <div class="card-footer text-muted">
+                <div class="row justify-content-center">
+                    <div class="col-md text-start">
+                        {{etiquetas}}
+                    </div>
+                    <div class="col-md text-end">
+                        {{fecha | dateTime}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

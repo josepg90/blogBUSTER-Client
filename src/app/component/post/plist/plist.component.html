@@ -89,14 +89,15 @@
                     <td style="width: 25%">{{fila.cuerpo | trim}}</td>
                     <td style="width: 15%">{{fila.fecha | dateTime}}</td>
                     <td style="width: 20%">{{fila.etiquetas}}</td>
-                    <td style="width: 5%" innerHtml="{{fila.visible | showBoolean}}"></td>
+                    <td style="width: 5%"><button type="button" class="btn btn-primary btn-sm" 
+                        innerHtml="{{fila.visible | showBoolean}}" (click)='id=fila.id;getPost();'></button></td>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <a href="http://localhost:4200/view/{{fila.id}}"><button type="button" class="btn btn-success"><i class="far fa-eye"></i></button></a>
-                        <a (click)="new(fila.id, fila.titulo, fila.cuerpo, fila.fecha, fila.etiquetas, fila.visible)">
-                            <button type="button" class="btn btn-secondary"><i class="fas fa-search"></i></button>
+                        <a href="http://localhost:4200/view/{{fila.id}}" class="btn btn-success"><i class="far fa-eye"></i></a>
+                        <a (click)="new(fila.id, fila.titulo, fila.cuerpo, fila.fecha, fila.etiquetas, fila.visible)" 
+                        class="btn btn-secondary"><i class="fas fa-search"></i>
                         </a>
-                        <a href="http://localhost:4200/update/{{fila.id}}"><button type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button></a>
-                        <a href="http://localhost:4200/delete/{{fila.id}}"><button type="button" class="btn btn-danger"><i class="fas fa-times"></i></button></a>
+                        <a href="http://localhost:4200/update/{{fila.id}}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                        <a href="http://localhost:4200/delete/{{fila.id}}" class="btn btn-danger"><i class="fas fa-times"></i></a>
                     </div>
                 </tr>
                 
@@ -109,7 +110,8 @@
 </div>
 
 <app-modal [show]="eventsSubject.asObservable()" [body]="strResult" (close)="closeModal()">
-    <table class="table table-striped">
+    <app-look [titulo]="titulo" [cuerpo]="cuerpo" [fecha]="fecha" [etiquetas]="etiquetas"></app-look>
+    <!--<table class="table table-striped">
         <thead></thead>
         <tbody>
         <tr>
@@ -137,7 +139,7 @@
             <td innerHtml="{{visible | showBoolean}}"></td>
         </tr>
     </tbody>
-    </table>
+    </table>-->
     <!--<h5 class="sombra d-inline">ID: </h5><p class="d-inline">{{id}}</p><hr>
     <h5 class="sombra d-inline">Título: </h5><p class="d-inline">{{titulo}}</p><hr>
     <h5 class="sombra d-inline">Cuerpo: </h5><p class="d-inline">{{cuerpo}}</p><hr>

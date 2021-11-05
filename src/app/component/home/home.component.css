@@ -1,0 +1,7 @@
+.limitTextHeight {
+    height: 23px;
+    overflow: hidden;
+}
+.derecha {
+    text-align: right;
+}

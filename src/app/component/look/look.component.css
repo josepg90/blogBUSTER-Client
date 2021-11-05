@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
+.postcard__bar {
+    width: 100px;
+    height: 8px;
+    margin: 10px 0;
+    border-radius: 5px;
+    background-color: #424242;
+    transition: width 0.6s ease;
+}
+
+.postcard__bar:hover  {
+    width: 800px;
+  }
+
+.card {
+    font-family: "Baloo 2", cursive;
+    font-size: 18px;
+}
+
+h5 {
+    font-size: 1.5em;
+}
+
+.card-body:hover{
+background-color: #EFE7E5;
+}
+
+.card-body {
+    transition: background-color 0.6s linear 0.2s;
+}

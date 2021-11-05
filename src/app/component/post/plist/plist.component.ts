@@ -28,6 +28,8 @@ export class PlistComponent implements OnInit {
   etiquetas: string;
   visible: boolean;
   filtro: string;
+  fecha2: string;
+  //cambio:boolean;
   //id:number;
 
   constructor(
@@ -57,12 +59,33 @@ export class PlistComponent implements OnInit {
       this.totalElements = oPage.totalElements;
       this.totalPages = oPage.totalPages;
       this.barraPaginacion = this.oPaginationService.pagination(this.totalPages, this.page);
-      console.log(this.filtro);
+      
     })
   }
 
-  onSearchChange(searchValue: string): void {  
-    console.log(searchValue);
+  getPost = () => {
+
+    this.oPostService.getPost(this.id).subscribe((oPost:IPost) => {
+      this.titulo=oPost.titulo;      
+      this.cuerpo=oPost.cuerpo;
+      this.fecha2=oPost.fecha.date.year + "-" + oPost.fecha.date.month + "-" + oPost.fecha.date.day + " " + oPost.fecha.time.hour + ":" + oPost.fecha.time.minute + ":" + oPost.fecha.time.second;
+      this.etiquetas=oPost.etiquetas;
+      this.visible=!oPost.visible;
+      console.log(this.visible);
+      
+      this.cambioVisible();
+    })
+
+  }
+
+  cambioVisible = () => {
+    const newData = { id: this.id, titulo: this.titulo, cuerpo: this.cuerpo, fecha: "2012-04-04 14:14"/*this.formularioUpdate.get('fecha')!.value +" "+ this.formularioUpdate.get('hora')!.value*/, etiquetas:this.etiquetas, visible:this.visible};
+      console.log("update:onSubmit: ", newData);
+      this.oPostService.update(JSON.stringify(newData)).subscribe(data => {
+        console.log(data);
+           this.getPage();  
+       } )
+       
   }
 
   jumpToPage = () => {
@@ -70,6 +93,10 @@ export class PlistComponent implements OnInit {
     return false;
   }
   
+  onSearchChange(searchValue: string): void {  
+    console.log(searchValue);
+  }
+
   new = (id: number, titulo: string, cuerpo: string, fecha: IFecha, etiquetas: string, visible: boolean):void => {
       this.id=id;
       this.titulo=titulo;
@@ -90,15 +117,5 @@ export class PlistComponent implements OnInit {
   closeModal():void {
     this.oRouter.navigate(["/plist"]);
   }
-  /*getDropdown = () => {
-    this.oPostService.getPage(this.rpp, this.page).subscribe((oPage: IPage) => {
-      this.aPosts = oPage.content;
-      this.totalElements = oPage.totalElements;
-      this.totalPages = oPage.totalPages;
-      this.barraPaginacion = this.oPaginationService.pagination(this.totalPages, this.page);
-      
-    })
-
-  }*/
 
 }

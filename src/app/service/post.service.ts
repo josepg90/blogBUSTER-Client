@@ -52,6 +52,10 @@ export class PostService {
     return this.http.get<IPage>(this.sURL + "?rpp=" + rpp + "&page=" + page + "&param=" + param + "&direction=" + direction  + "&filtro=" + filtro, httpOptions);
   }
 
+  getAll(rpp: number, page: number): Observable<IPage> {    
+    return this.http.get<IPage>(this.sURL + "?rpp=" + rpp + "&page=" + page, httpOptions);
+  }
+
   getPost(id: number): Observable<IPost> {
     return this.http.get<IPost>(this.sURL + "?id=" + id, httpOptions);
   }

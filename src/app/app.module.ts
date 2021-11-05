@@ -24,6 +24,8 @@ import { UpdateComponent } from './component/post/update/update.component';
 import { DeleteComponent } from './component/post/delete/delete.component';
 import { ModalComponent } from './component/modal/modal.component';
 import { DateTimeService } from './service/datetime.service';
+import { LookComponent } from './component/look/look.component';
+import { ReadComponent } from './component/read/read.component';
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import { DateTimeService } from './service/datetime.service';
     UpdateComponent,
     DeleteComponent,
     ShowBoolean,
-    ModalComponent
+    ModalComponent,
+    LookComponent,
+    ReadComponent
   ],
   imports: [
     HttpClientModule,

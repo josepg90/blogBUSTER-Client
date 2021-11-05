@@ -10,6 +10,7 @@ import { ViewComponent } from './component/view/view.component';
 import { NewComponent } from './component/post/new/new.component';
 import { DeleteComponent } from './component/post/delete/delete.component';
 import { UpdateComponent } from './component/post/update/update.component';
+import { ReadComponent } from './component/read/read.component';
 
 
 const routes: Routes = [
@@ -22,7 +23,9 @@ const routes: Routes = [
   { path: 'view/:id', component: ViewComponent, resolve: { message: SessionResolver } },
   { path: 'new', component: NewComponent, resolve: { message: SessionResolver } },
   { path: 'delete/:id', component: DeleteComponent, resolve: { message: SessionResolver } },
-  { path: 'update/:id', component: UpdateComponent, resolve: { message: SessionResolver } }
+  { path: 'update/:id', component: UpdateComponent, resolve: { message: SessionResolver } },
+  { path: 'read/:id', component: ReadComponent, resolve: { message: SessionResolver } }
+
 
 ];
 

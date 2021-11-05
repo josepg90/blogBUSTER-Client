@@ -56,7 +56,7 @@ export class UpdateComponent implements OnInit {
     this.oPostService.getPost(this.id).subscribe((oPost:IPost) => {
       this.titulo=oPost.titulo;
       this.cuerpo=oPost.cuerpo;
-      this.fecha=oPost.fecha.date.month + "-" + oPost.fecha.date.month + "-" + oPost.fecha.date.day + " " + oPost.fecha.time.hour + ":" + oPost.fecha.time.minute;// + ":" + oPost.fecha.time.second;
+      this.fecha=oPost.fecha.date.month + "-" + oPost.fecha.date.month + "-" + oPost.fecha.date.day + " " + oPost.fecha.time.hour + ":" + oPost.fecha.time.minute + ":" + oPost.fecha.time.second;
       this.etiquetas=oPost.etiquetas;
       this.visible=oPost.visible;
       console.log(this.visible);
@@ -89,7 +89,7 @@ export class UpdateComponent implements OnInit {
       } else {
         this.checkeado = false;
       }
-      const newData = { id: this.formularioUpdate.get('id')!.value, titulo: this.formularioUpdate.get('titulo')!.value, cuerpo: this.formularioUpdate.get('cuerpo')!.value, fecha: this.fecha/*this.formularioUpdate.get('fecha')!.value +" "+ this.formularioUpdate.get('hora')!.value*/, etiquetas:this.formularioUpdate.get('etiquetas')!.value, visible:this.checkeado};
+      const newData = { id: this.formularioUpdate.get('id')!.value, titulo: this.formularioUpdate.get('titulo')!.value, cuerpo: this.formularioUpdate.get('cuerpo')!.value, fecha: "2012-04-04 14:14"/*this.formularioUpdate.get('fecha')!.value +" "+ this.formularioUpdate.get('hora')!.value*/, etiquetas:this.formularioUpdate.get('etiquetas')!.value, visible:this.checkeado};
       console.log("update:onSubmit: ", newData);
       this.oPostService.update(JSON.stringify(newData)).subscribe(data => {
         console.log(data);

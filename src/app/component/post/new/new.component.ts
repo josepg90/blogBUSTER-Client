@@ -43,7 +43,7 @@ export class NewComponent implements OnInit {
       titulo: ['', [Validators.required, Validators.minLength(1)]],
       cuerpo: [''],
       fecha: [''],
-      hora: [''],
+      //hora: [''],
       etiquetas: [''],
       visible: ['']
     })
@@ -83,7 +83,7 @@ export class NewComponent implements OnInit {
         this.new();
        } )*/
 
-       this.date = this.formularioNew.get('fecha')!.value +" "+ this.formularioNew.get('hora')!.value;
+       //this.date = this.formularioNew.get('fecha')!.value +" "+ this.formularioNew.get('hora')!.value;
 
        if (this.formularioNew) {
         this.oAdd = {
@@ -91,7 +91,7 @@ export class NewComponent implements OnInit {
           titulo: this.formularioNew.value.titulo,
           cuerpo: this.formularioNew.value.cuerpo,
           etiquetas: this.formularioNew.value.etiquetas,
-          fecha: this.date,
+          fecha: "2021-10-27 19:04",
           visible: this.formularioNew.value.visible
         }
         this.new();
@@ -118,7 +118,7 @@ export class NewComponent implements OnInit {
   }
 
   closeModal():void {
-    this.oRouter.navigate(["/view/" + this.id]);
+    //this.oRouter.navigate(["/view/" + this.id]);
   }
   
 
