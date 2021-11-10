@@ -41,7 +41,7 @@
 
             <div class="input-group mb-3 w-100">
                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
-                <input type="text" class="form-control" [(ngModel)]="filtro" (keyup)="getPage();" placeholder="Búsqueda" aria-label="busqueda" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" [(ngModel)]="filtro" [(ngModel)]="searchQuery" (keyup)="getPage();" placeholder="Búsqueda" aria-label="busqueda" aria-describedby="basic-addon1">
                 <button type="button" class="btn btn-primary btn-sm" (click)="getPage();">Buscar</button>
             </div>
             
@@ -85,10 +85,10 @@
                 <tbody>
                 <tr *ngFor="let fila of aPosts">
                     <td style="width: 10%; text-align: center;">{{fila.id}}</td>
-                    <td style="width: 25%">{{fila.titulo | trim}}</td>
-                    <td style="width: 25%">{{fila.cuerpo | trim}}</td>
-                    <td style="width: 15%">{{fila.fecha | dateTime}}</td>
-                    <td style="width: 20%">{{fila.etiquetas}}</td>
+                    <td style="width: 25%" [innerHtml]='fila.titulo | trim | highLight : searchQuery'></td>
+                    <td style="width: 25%" [innerHtml]='fila.cuerpo | trim | highLight : searchQuery'></td>
+                    <td style="width: 15%" >{{fila.fecha | dateTime}}</td>
+                    <td style="width: 20%" [innerHtml]='fila.etiquetas | trim | highLight : searchQuery'></td>
                     <td style="width: 5%"><button type="button" class="btn btn-primary btn-sm" 
                         innerHtml="{{fila.visible | showBoolean}}" (click)='id=fila.id;getPost();'></button></td>
                     <div class="btn-group" role="group" aria-label="Basic example">

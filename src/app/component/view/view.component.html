@@ -7,57 +7,53 @@
     <div class="row mt-5">
         <div class="col">
             <form name="userForm" ng-show="!fallo&&!hecho">
-                <div class="form-group row my-3">
-                    <label for="titulo" class="col-sm-2 col-form-label"  ng-show="authStatus==200">Id:</label>
-                    <div class="col-sm-6"  ng-show="authStatus==200">
+                <div class="form-group row my-2">
+                    <label for="titulo" class="col-sm-2 col-form-label">Id:</label>
+                    <div class="col-sm-8">
                         <h5>{{id}}</h5>
                     </div>
                 </div>
                 <hr>
-                <div class="form-group row my-3">
-                    <label for="titulo" class="col-sm-2 col-form-label"  ng-show="authStatus==200">Titulo:</label>
-                    <div class="col-sm-6">
-                        <h3 class="font-weight-bold">{{titulo}}</h3>
+                <div class="form-group row my-2">
+                    <label for="titulo" class="col-sm-2 col-form-label">Titulo:</label>
+                    <div class="col-sm-8">
+                        <h5 class="font-weight-bold">{{titulo}}</h5>
                     </div>
                 </div>
                 <hr>
-                <div class="form-group row my-3">
-                    <label for="cuerpo" class="col-sm-2 col-form-label"  ng-show="authStatus==200">Cuerpo:</label>
-                    <div class="col-sm-6">
+                <div class="form-group row my-2">
+                    <label for="cuerpo" class="col-sm-2 col-form-label">Cuerpo:</label>
+                    <div class="col-sm-8">
                         <p>{{cuerpo}}</p>
                     </div>
                 </div>
                 <hr>
-                <div class="form-group row my-3">
-                    <label for="fecha" class="col-sm-2 col-form-label"  ng-show="authStatus==200">Fecha:</label>
-                    <div class="col-sm-6">
+                <div class="form-group row my-2">
+                    <label for="fecha" class="col-sm-2 col-form-label">Fecha:</label>
+                    <div class="col-sm-8">
                         <p>{{fecha}}</p>
                     </div>
                 </div>
                 <hr>
-                <div class="form-group row my-3">
-                    <label for="etiquetas" class="col-sm-2 col-form-label"  ng-show="authStatus==200">Etiquetas:</label>
-                    <div class="col-sm-6">
+                <div class="form-group row my-2">
+                    <label for="etiquetas" class="col-sm-2 col-form-label">Etiquetas:</label>
+                    <div class="col-sm-8">
                         <p>{{etiquetas}}</p>
                     </div>
                 </div>
                 <hr>
-                <div class="form-group row my-3">
-                    <label for="visible" class="col-sm-2 col-form-label"  ng-show="authStatus==200">Visible:</label>
-                    <div class="col-sm-6">
+                <div class="form-group row my-2">
+                    <label for="visible" class="col-sm-2 col-form-label">Visible:</label>
+                    <div class="col-sm-8">
                         <p innerHtml="{{visible | showBoolean}}"></p>
                     </div>
                 </div>
                
                 <hr>
-                <div class="form-group row mt-3 mb-5">
-                    <label for="etiquetas" class="col-sm-2 col-form-label"  ng-show="authStatus==200">Comentarios:</label>
-                        <div class="col-sm-6">
-                            <textarea id="comentarios" name="comentarios" rows="4" cols="40" placeholder="Comentarios"></textarea>
-                </div>
-                </div>
                 <div class="my-5" style="text-align: center;">
-                    <a href="http://localhost:4200/plist"><button type="button" class="btn btn-success">Volver</button></a>
+                    <a class="btn btn-primary mx-2" [routerLink]="['/home']"><i class="fas fa-home"></i> Página
+                        principal</a>
+                    <a (click)="goBack()"><button type="button" class="btn btn-success">Actualizar Post</button></a>
                 </div>
             </form>
             

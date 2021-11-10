@@ -26,6 +26,8 @@ import { ModalComponent } from './component/modal/modal.component';
 import { DateTimeService } from './service/datetime.service';
 import { LookComponent } from './component/look/look.component';
 import { ReadComponent } from './component/read/read.component';
+import { HighLightPipe } from './pipe/high-light.pipe';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 @NgModule({
@@ -46,14 +48,16 @@ import { ReadComponent } from './component/read/read.component';
     ShowBoolean,
     ModalComponent,
     LookComponent,
-    ReadComponent
+    ReadComponent,
+    HighLightPipe
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    InfiniteScrollModule
   ],
   providers: [
     SessionService,

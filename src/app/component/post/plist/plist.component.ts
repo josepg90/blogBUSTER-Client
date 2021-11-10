@@ -29,8 +29,7 @@ export class PlistComponent implements OnInit {
   visible: boolean;
   filtro: string;
   fecha2: string;
-  //cambio:boolean;
-  //id:number;
+  searchQuery: string = '';
 
   constructor(
     private oPaginationService: PaginationService,

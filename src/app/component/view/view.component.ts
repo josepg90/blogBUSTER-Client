@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IFecha, IPage, IPost } from 'src/app/model/model-interfaces';
 import { PostService } from 'src/app/service/post.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-view',
@@ -22,7 +23,8 @@ export class ViewComponent implements OnInit {
   
   constructor(
     private oPostService: PostService,
-    private oActivatedRoute: ActivatedRoute
+    private oActivatedRoute: ActivatedRoute,
+    private oLocation: Location
   ) {
     this.id = this.oActivatedRoute.snapshot.params.id;
     this.getPost();
@@ -47,5 +49,9 @@ export class ViewComponent implements OnInit {
              
     })
 
+  }
+
+  goBack() {
+    this.oLocation.back();
   }
 }
