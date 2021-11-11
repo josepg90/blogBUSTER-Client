@@ -43,10 +43,20 @@ h2, h4 {
     color: #fff;
 }
 
-.input-group{
+.izq{
+    margin: 0;
+}
+.shadow {
+    padding: 10px;
     text-align: center;
-    margin: auto;
-    width: 40%;
+}
+.header{
+    background-color: #6dcae7;
+    border-radius: 60%;
+}
+
+h1 {
+    text-shadow: 1px 1px 1px black;
 }
 
 

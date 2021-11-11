@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IPost } from 'src/app/model/model-interfaces';
 import { PostService } from 'src/app/service/post.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-update',
@@ -29,7 +30,8 @@ export class UpdateComponent implements OnInit {
     private oPostService: PostService,
     private oFormBuilder: FormBuilder,
     private oRouter: Router,
-    private oActivatedRoute: ActivatedRoute
+    private oActivatedRoute: ActivatedRoute,
+    private oLocation: Location  
   ) {
     this.id = this.oActivatedRoute.snapshot.params.id; 
     this.getPost();
@@ -96,5 +98,9 @@ export class UpdateComponent implements OnInit {
         console.log(this.fecha); 
         console.log(this.hora);         
        } )
+  }
+
+  goBack() {
+    this.oLocation.back();
   }
 }

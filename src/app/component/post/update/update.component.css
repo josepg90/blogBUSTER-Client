@@ -11,26 +11,46 @@
    padding-top: 0 !important;
 }
 
+.col-sm-6 {
+    margin-left: 0;
+ }
+
+* {
+    margin:auto;
+}
+
 label {
     font-size: large;
     text-align: left;
     text-shadow: 1px 1px 1px black;
+    margin-right: 25px;
+
+}
+
+.form-check-input {
+    width:1.5em !important;
+    height:1.5em !important;
 }
 
 button {
     margin:0 auto;
 }
 
-i{
-    margin-right: 10px;;
-}
 div {
     margin: 0 auto;
 }
-
 
 .container {
     border-radius: 10px;
     background-color: #f2f2f2;
     padding: 0px 20px;
+}
+
+.header{
+    background-color: #6dcae7;
+    border-radius: 60%;
+}
+
+h1 {
+    text-shadow: 1px 1px 1px black;
 }

@@ -26,8 +26,6 @@ div {
     text-align: center;
 }
 
-
-
 hr {
     margin: auto;
 }
@@ -36,4 +34,12 @@ hr {
     border-radius: 10px;
     background-color: #f2f2f2;
     padding: 0px 20px;
+}
+.header{
+    background-color: #6dcae7;
+    border-radius: 60%;
+}
+
+h1 {
+    text-shadow: 1px 1px 1px black;
 }

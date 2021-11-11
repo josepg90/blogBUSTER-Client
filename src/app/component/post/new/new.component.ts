@@ -5,6 +5,7 @@ import { PostService } from 'src/app/service/post.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { Location } from '@angular/common';
 
 declare let $: any;
 
@@ -36,7 +37,8 @@ export class NewComponent implements OnInit {
     private oFormBuilder: FormBuilder,
     private oRouter: Router,
     private oActivatedRoute: ActivatedRoute,
-    private oDateTimeService: DateTimeService  
+    private oDateTimeService: DateTimeService,
+    private oLocation: Location  
 
   ) { 
     this.formularioNew = <FormGroup>this.oFormBuilder.group({
@@ -121,5 +123,8 @@ export class NewComponent implements OnInit {
     //this.oRouter.navigate(["/view/" + this.id]);
   }
   
+  goBack() {
+    this.oLocation.back();
+  }
 
 }
