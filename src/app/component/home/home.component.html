@@ -11,15 +11,13 @@
             </div>
         </div>
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center search-results-container" infiniteScroll [infiniteScrollDistance]="2" [scrollWindow]="false" (scrolled)="onScroll()">
         <div class="col-md">
             <div class="card my-5" *ngFor="let fila of aPosts">
                 <div class="card-body">
                     <h5 class="card-title"><a [routerLink]="['/read/' + fila.id]">{{fila.titulo}}</a></h5>
-                    <p class="card-text" [ngClass]="{'limitTextHeight': isReadMore}">{{fila.cuerpo}}</p>
-                    <div class="derecha"><button type="button" class="btn btn-primary" (click)="isReadMore=!isReadMore">
-                        {{ isReadMore ? 'Read More': 'Read Less' }}
-                    </button></div>
+                    
+                    <app-read-more [cuerpo]="fila.cuerpo"></app-read-more>
                 </div>
                 <div class="card-footer text-muted">
                     <div class="row justify-content-center">
@@ -47,3 +45,5 @@
             </nav>
         </div>
     </div>
+     	
+<!--<app-infinite-scroll></app-infinite-scroll>-->

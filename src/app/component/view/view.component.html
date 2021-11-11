@@ -53,7 +53,7 @@
                 <div class="my-5" style="text-align: center;">
                     <a class="btn btn-primary mx-2" [routerLink]="['/home']"><i class="fas fa-home"></i> Página
                         principal</a>
-                    <a (click)="goBack()"><button type="button" class="btn btn-success">Actualizar Post</button></a>
+                    <a [routerLink]="['/update/'+ id]"><button type="button" class="btn btn-success">Actualizar Post</button></a>
                 </div>
             </form>
             

@@ -23,11 +23,13 @@ export class HomeComponent implements OnInit {
   direction: string = "ASC";
   filtro: string = "";
   isReadMore:boolean = true;
+  private finishPage = 3;
+  private actualPage: number;
     
   constructor(
     private oPaginationService: PaginationService,
     private oPostService: PostService,
-    private oRoute: ActivatedRoute
+    private oRoute: ActivatedRoute,
     
     ) {
       if (this.oRoute.snapshot.data.message) {
@@ -37,7 +39,9 @@ export class HomeComponent implements OnInit {
       }
  
     this.page = 1;
+    this.actualPage = 1;
     this.getPage();
+    
   }
 
   reset() {
@@ -47,30 +51,28 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getAll = () => {
-    this.oPostService.getAll(this.rpp, this.page).subscribe((oPage: IPage) => {
-      this.aPosts = oPage.content;
-      this.totalElements = oPage.totalElements;
-      this.totalPages = oPage.totalPages;
-      this.barraPaginacion = this.oPaginationService.pagination(this.totalPages, this.page);
-      
-    })
-  }
-
   getPage = () => {
     this.oPostService.getPage(this.rpp, this.page, this.param, this.direction, this.filtro).subscribe((oPage: IPage) => {
       this.aPosts = oPage.content;
       this.totalElements = oPage.totalElements;
       this.totalPages = oPage.totalPages;
       this.barraPaginacion = this.oPaginationService.pagination(this.totalPages, this.page);
-      
+
     })
   }
 
   jumpToPage = () => {
-    this.getAll();
+    this.getPage();
     return false;
   }
 
+  onScroll() {
+    if (this.actualPage < this.finishPage) {
+      this.getPage();
+      this.actualPage ++;
+    } else {
+      console.log('No more lines. Finish page!');
+    }
+  }
   
 }

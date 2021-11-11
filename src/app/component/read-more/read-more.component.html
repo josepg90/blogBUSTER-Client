@@ -1,0 +1,6 @@
+<p class="card-text" [ngClass]="{'limitTextHeight': isReadMore}">{{cuerpo}}</p>
+<div class="derecha">
+    <button type="button" class="btn btn-primary" (click)="showText()">
+    {{ isReadMore ? 'Leer Más': 'Leer Menos' }}
+    </button>
+</div>

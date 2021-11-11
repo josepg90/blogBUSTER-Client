@@ -103,7 +103,7 @@ export class NewComponent implements OnInit {
     this.oPostService.create(this.oAdd).subscribe((id: number) => {
       if (id) {
         this.id = id;
-        this.strResult = "El post se ha creado correctamente";
+        this.strResult = "¡¡El post se ha creado correctamente!!";
       } else {
         this.strResult = "Error en la creación del registro";
       }

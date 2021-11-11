@@ -1,0 +1,17 @@
+<div class="container" infiniteScroll [infiniteScrollDistance]="2"  (scrolled)="onScroll()">
+    <h1 style="text-align: center">INFINITE SCROLL EXAMPLE</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col"><strong>TEXT</strong></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let line of aPosts">
+          <th scope="row">{{line.id}}</th>
+          <th scope="row">{{line.titulo}}</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>

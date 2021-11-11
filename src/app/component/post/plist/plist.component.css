@@ -1,8 +1,10 @@
 td{
-    border:solid 1px black;
     padding: 10px;
     vertical-align: middle;
-
+    text-align: center;
+}
+.borde {
+    border-bottom: 3px solid #000;
 }
 div.btn-group{
     box-shadow: none;
@@ -16,3 +18,35 @@ th, .sombra{
 h2, h4 {
     text-align: center;
 }
+
+.w-10{
+    width: 10%;
+}
+
+.w-20{
+    width: 20%;
+}
+
+.w-5{
+    width: 5%;
+}
+
+.w-15{
+    width: 15%;
+}
+
+.centro{
+    text-align: center;
+}
+
+.fa-search{
+    color: #fff;
+}
+
+.input-group{
+    text-align: center;
+    margin: auto;
+    width: 40%;
+}
+
+

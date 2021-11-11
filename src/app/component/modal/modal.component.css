@@ -1,3 +1,19 @@
 .modal-dialog {
     max-width:70%;
 }
+
+.modal-body {
+    font-size: 2em;
+    background-color: #bcf4de;
+    text-align: center;
+}
+
+.modal-header{
+    background-color: #ded6d1;
+    text-shadow: 1px 1px 1px black;
+
+}
+
+.modal-footer {
+    background-color: #ded6d1;
+}
