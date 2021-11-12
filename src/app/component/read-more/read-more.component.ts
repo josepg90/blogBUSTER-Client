@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ReadMoreComponent implements OnInit {
 
   @Input() cuerpo: string;
-  isReadMore:boolean = true;
+  isReadMore: boolean = true;
 
   constructor() { }
 
@@ -17,5 +17,5 @@ export class ReadMoreComponent implements OnInit {
 
   showText() {
     this.isReadMore = !this.isReadMore
- }
+  }
 }

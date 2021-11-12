@@ -3,109 +3,132 @@
 <div class="container mt-3">
     <div class="row justify-content-center">
         <div class="header centro shadow">
-            <h1><span class="font-weight-bold" ><i class="fas fa-file-alt me-3"></i> Listado de Posts</span></h1>
+            <h1><span class="font-weight-bold"><i class="fas fa-file-alt me-3"></i> Listado de Posts</span></h1>
         </div>
     </div>
     <div class="row justify-content-center">
         <div class="col">
-            
-            <!--<h4>Paginas: {{totalPages}}</h4>
-            <h4>RPP: {{rpp}}</h4>-->
-
-
             <div class="row mt-5">
                 <div class="col-md-5 dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                     Registros por página: {{rpp}}
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Registros por página: {{rpp}}
                     </button>
                     <ul class="dropdown-menu dropdown-menu-primary" aria-labelledby="dropdownMenuButton2">
-                      <li [ngClass]="{'active': (rpp == 2)}"><a class="dropdown-item" (click)="rpp=(2);getPage()">2</a></li>
-                      <li [ngClass]="{'active': (rpp == 5)}"><a class="dropdown-item" (click)="rpp=(5);getPage()">5</a></li>
-                      <li [ngClass]="{'active': (rpp == 10)}"><a class="dropdown-item" (click)="rpp=(10);getPage()">10</a></li>
+                        <li [ngClass]="{'active': (rpp == 2)}"><a class="dropdown-item"
+                                (click)="rpp=(2);getPage()">2</a></li>
+                        <li [ngClass]="{'active': (rpp == 5)}"><a class="dropdown-item"
+                                (click)="rpp=(5);getPage()">5</a></li>
+                        <li [ngClass]="{'active': (rpp == 10)}"><a class="dropdown-item"
+                                (click)="rpp=(10);getPage()">10</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3">
-                    <a [routerLink]="['/new']"><button type="button" class="btn btn-primary"><i class="fas fa-plus me-2"></i>Añadir nuevo Post</button></a>
+                    <a [routerLink]="['/new']"><button type="button" class="btn btn-primary"><i
+                                class="fas fa-plus me-2"></i>Añadir nuevo Post</button></a>
                 </div>
-            <div class="col-md-4">
-                <nav aria-label="pagination">
-                <ul class="pagination justify-content-end">
-                    <li class="page-item" aria-current="page" *ngFor="let p of barraPaginacion"
-                        [ngClass]="{'active': (page+'' == p)}">
-                        <a class="page-link" (click)="page=(+p);jumpToPage()" href="#">{{p}}</a>
-                    </li>
-                </ul>
-                </nav>
-            </div>
+                <div class="col-md-4">
+                    <nav aria-label="pagination">
+                        <ul class="pagination justify-content-end">
+                            <li class="page-item" aria-current="page" *ngFor="let p of barraPaginacion"
+                                [ngClass]="{'active': (page+'' == p)}">
+                                <a class="page-link" (click)="page=(+p);jumpToPage()" href="#">{{p}}</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
             <div class="row my-4">
                 <div class="col-md-2">
-            <h3>Registros: {{totalElements}}</h3>
-        </div>
-            <div class="col-md-4"></div>
-                <div class="input-group w-50 col-md-6">
-                <span class="input-group-text bg-primary" id="basic-addon1"><i class="fas fa-search"></i></span>
-                <input type="text" class="form-control" [(ngModel)]="filtro" [(ngModel)]="searchQuery" (keyup)="getPage();" placeholder="Búsqueda" aria-label="busqueda" aria-describedby="basic-addon1">
-                <!--<button type="button" class="btn btn-primary btn-sm" (click)="getPage();">Buscar</button>-->
+                    <h3>Registros: {{totalElements}}</h3>
                 </div>
-            
+                <div class="col-md-4"></div>
+                <div class="input-group w-50 col-md-6">
+                    <span class="input-group-text bg-primary" id="basic-addon1"><i class="fas fa-search"></i></span>
+                    <input type="text" class="form-control" [(ngModel)]="filtro" [(ngModel)]="searchQuery"
+                        (keyup)="getPage();" placeholder="Búsqueda" aria-label="busqueda"
+                        aria-describedby="basic-addon1">
+                </div>
             </div>
             <table class="table table-striped table-hover mb-5">
                 <thead>
                     <tr class="borde">
-                      <th scope="col">ID
-                          <div class="btn-group boton ms-1" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-outline-dark btn-sm" (click)='param="id";direction="ASC";getPage();'><i class="fas fa-arrow-up ms-1"></i></button>
-                            <button type="button" class="btn btn-outline-dark btn-sm" (click)='param="id";direction="DESC";getPage();'><i class="fas fa-arrow-down"></i></button>
-                          </div>
-                      </th>
-                      <th scope="col">Título
-                          <div class="btn-group boton ms-1" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-outline-dark btn-sm" (click)='param="titulo";direction="ASC";getPage();'><i class="fas fa-arrow-up ms-1"></i></button>
-                            <button type="button" class="btn btn-outline-dark btn-sm" (click)='param="titulo";direction="DESC";getPage();'><i class="fas fa-arrow-down"></i></button>
-                          </div>
-                      </th>                
-                      <th scope="col">Cuerpo
-                        <div class="btn-group boton ms-1" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-outline-dark btn-sm" (click)='param="cuerpo";direction="ASC";getPage();'><i class="fas fa-arrow-up ms-1"></i></button>
-                            <button type="button" class="btn btn-outline-dark btn-sm" (click)='param="cuerpo";direction="DESC";getPage();'><i class="fas fa-arrow-down"></i></button>
-                        </div>
-                      </th>
-                      <th scope="col">Fecha
-                        <div class="btn-group boton ms-1" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-outline-dark btn-sm" (click)='param="fecha";direction="ASC";getPage();'><i class="fas fa-arrow-up ms-1"></i></button>
-                            <button type="button" class="btn btn-outline-dark btn-sm" (click)='param="fecha";direction="DESC";getPage();'><i class="fas fa-arrow-down"></i></button>
-                        </div>
-                      </th>                                          
-                      <th scope="col">Etiquetas
-                        <div class="btn-group boton ms-1" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-outline-dark btn-sm" (click)='param="etiquetas";direction="ASC";getPage();'><i class="fas fa-arrow-up ms-1"></i></button>
-                            <button type="button" class="btn btn-outline-dark btn-sm" (click)='param="etiquetas";direction="DESC";getPage();'><i class="fas fa-arrow-down"></i></button>
-                        </div>
-                      </th>                                        
-                      <th scope="col">Visible</th>                                           
-                      <th>Acciones</th>
+                        <th scope="col">ID
+                            <div class="btn-group boton ms-1" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-outline-dark btn-sm"
+                                    (click)='param="id";direction="ASC";getPage();'><i
+                                        class="fas fa-arrow-up ms-1"></i></button>
+                                <button type="button" class="btn btn-outline-dark btn-sm"
+                                    (click)='param="id";direction="DESC";getPage();'><i
+                                        class="fas fa-arrow-down"></i></button>
+                            </div>
+                        </th>
+                        <th scope="col">Título
+                            <div class="btn-group boton ms-1" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-outline-dark btn-sm"
+                                    (click)='param="titulo";direction="ASC";getPage();'><i
+                                        class="fas fa-arrow-up ms-1"></i></button>
+                                <button type="button" class="btn btn-outline-dark btn-sm"
+                                    (click)='param="titulo";direction="DESC";getPage();'><i
+                                        class="fas fa-arrow-down"></i></button>
+                            </div>
+                        </th>
+                        <th scope="col">Cuerpo
+                            <div class="btn-group boton ms-1" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-outline-dark btn-sm"
+                                    (click)='param="cuerpo";direction="ASC";getPage();'><i
+                                        class="fas fa-arrow-up ms-1"></i></button>
+                                <button type="button" class="btn btn-outline-dark btn-sm"
+                                    (click)='param="cuerpo";direction="DESC";getPage();'><i
+                                        class="fas fa-arrow-down"></i></button>
+                            </div>
+                        </th>
+                        <th scope="col">Fecha
+                            <div class="btn-group boton ms-1" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-outline-dark btn-sm"
+                                    (click)='param="fecha";direction="ASC";getPage();'><i
+                                        class="fas fa-arrow-up ms-1"></i></button>
+                                <button type="button" class="btn btn-outline-dark btn-sm"
+                                    (click)='param="fecha";direction="DESC";getPage();'><i
+                                        class="fas fa-arrow-down"></i></button>
+                            </div>
+                        </th>
+                        <th scope="col">Etiquetas
+                            <div class="btn-group boton ms-1" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-outline-dark btn-sm"
+                                    (click)='param="etiquetas";direction="ASC";getPage();'><i
+                                        class="fas fa-arrow-up ms-1"></i></button>
+                                <button type="button" class="btn btn-outline-dark btn-sm"
+                                    (click)='param="etiquetas";direction="DESC";getPage();'><i
+                                        class="fas fa-arrow-down"></i></button>
+                            </div>
+                        </th>
+                        <th scope="col">Visible</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let fila of aPosts">
-                    <td class="w-10">{{fila.id}}</td>
-                    <td class="w-25" [innerHtml]='fila.titulo | trim | highLight : searchQuery'></td>
-                    <td class="w-25" [innerHtml]='fila.cuerpo | trim | highLight : searchQuery'></td>
-                    <td class="w-15" >{{fila.fecha | formateoFecha}}</td>
-                    <td class="w-20" [innerHtml]='fila.etiquetas | trim | highLight : searchQuery'></td>
-                    <td class="w-5" class="centro"><button type="button" class="btn btn-primary btn-sm" 
-                        innerHtml="{{fila.visible | showBoolean}}" (click)='id=fila.id;getPost();'></button></td>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <a [routerLink]="['/view/'+ fila.id]" class="btn btn-success"><i class="far fa-eye"></i></a>
-                        <a (click)="new(fila.id, fila.titulo, fila.cuerpo, fila.fecha, fila.etiquetas, fila.visible)" 
-                        class="btn btn-secondary"><i class="fas fa-search"></i>
-                        </a>
-                        <a [routerLink]="['/update/'+ fila.id]" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                        <a [routerLink]="['/delete/'+ fila.id]" class="btn btn-danger"><i class="fas fa-times"></i></a>
-                    </div>
-                </tr>
-                
+                    <tr *ngFor="let fila of aPosts">
+                        <td class="w-10">{{fila.id}}</td>
+                        <td class="w-25" [innerHtml]='fila.titulo | trim | highLight : searchQuery'></td>
+                        <td class="w-25" [innerHtml]='fila.cuerpo | trim | highLight : searchQuery'></td>
+                        <td class="w-15">{{fila.fecha | formateoFecha}}</td>
+                        <td class="w-20" [innerHtml]='fila.etiquetas | trim | highLight : searchQuery'></td>
+                        <td class="w-5" class="centro"><button type="button" class="btn btn-primary btn-sm"
+                                innerHtml="{{fila.visible | showBoolean}}" (click)='id=fila.id;getPost();'></button>
+                        </td>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <a [routerLink]="['/view/'+ fila.id]" class="btn btn-success"><i class="far fa-eye"></i></a>
+                            <a (click)="new(fila.id, fila.titulo, fila.cuerpo, fila.fecha, fila.etiquetas, fila.visible)"
+                                class="btn btn-secondary"><i class="fas fa-search"></i>
+                            </a>
+                            <a [routerLink]="['/update/'+ fila.id]" class="btn btn-warning"><i
+                                    class="fas fa-edit"></i></a>
+                            <a [routerLink]="['/delete/'+ fila.id]" class="btn btn-danger"><i
+                                    class="fas fa-times"></i></a>
+                        </div>
+                    </tr>
+
                 </tbody>
             </table>
         </div>
@@ -114,33 +137,4 @@
 <app-footer></app-footer>
 <app-modal [show]="eventsSubject.asObservable()" [body]="strResult" (close)="closeModal()">
     <app-look [titulo]="titulo" [cuerpo]="cuerpo" [fecha]="fecha" [etiquetas]="etiquetas"></app-look>
-    <!--<table class="table table-striped">
-        <thead></thead>
-        <tbody>
-        <tr>
-            <td class="sombra">ID</td>
-            <td>{{id}}</td>
-        </tr>
-        <tr>
-            <td class="sombra">Título</td>
-            <td>{{titulo}}</td>
-        </tr>
-        <tr>
-            <td class="sombra">Cuerpo</td>
-            <td>{{cuerpo}}</td>
-        </tr>
-        <tr>
-            <td class="sombra">Fecha</td>
-            <td>{{fecha | dateTime}}</td>
-        </tr>
-        <tr>
-            <td class="sombra">Etiquetas</td>
-            <td>{{etiquetas}}</td>
-        </tr>
-        <tr>
-            <td class="sombra">Visible</td>
-            <td innerHtml="{{visible | showBoolean}}"></td>
-        </tr>
-    </tbody>
-    </table>-->
 </app-modal>

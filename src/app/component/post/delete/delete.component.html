@@ -1,17 +1,17 @@
 <app-menu></app-menu>
 
 <div class="header shadow mt-3 w-75">
-    <h1><span class="font-weight-bold" ><i class="fas fa-times me-3"></i> Eliminar Post</span></h1>
+    <h1><span class="font-weight-bold"><i class="fas fa-times me-3"></i> Eliminar Post</span></h1>
 </div>
 
 <div class="container my-5">
-    
+
     <div class="row mt-5">
         <div class="col">
             <form name="userForm" ng-show="!fallo&&!hecho" *ngIf="showQuestion">
                 <div class="form-group row my-3">
                     <label for="titulo" class="col-sm-2 col-form-label">Id:</label>
-                    <div class="col-sm-6"  ng-show="authStatus==200">
+                    <div class="col-sm-6" ng-show="authStatus==200">
                         <h5>{{id}}</h5>
                     </div>
                 </div>
@@ -50,25 +50,28 @@
                         <p innerHtml="{{visible | showBoolean}}"></p>
                     </div>
                 </div>
-               
+
                 <hr>
                 <div class="shadow my-3 bg-warning">
-                    <h2 *ngIf="showQuestion"><span class="font-weight-bold" ><i class="fas fa-exclamation-triangle me-3"></i>¿Desea eliminar este Post?</span></h2>
+                    <h2 *ngIf="showQuestion"><span class="font-weight-bold"><i
+                                class="fas fa-exclamation-triangle me-3"></i>¿Desea eliminar este Post?</span></h2>
                 </div>
                 <div class="my-5" style="text-align: center;">
-                    <button type="button" class="btn btn-success mx-3" (click)="delete(); showSuccess= true; showQuestion=false" *ngIf="showQuestion">Eliminar</button>
-                    <a href="http://localhost:4200/plist"><button type="button" class="btn btn-success">Cancelar</button></a>
+                    <button type="button" class="btn btn-success mx-3"
+                        (click)="delete(); showSuccess= true; showQuestion=false" *ngIf="showQuestion">Eliminar</button>
+                    <a href="http://localhost:4200/plist"><button type="button"
+                            class="btn btn-success">Cancelar</button></a>
                 </div>
             </form>
             <div class="shadow my-3" style="background-color:aquamarine;" *ngIf="showSuccess">
-                <h2 ><span class="font-weight-bold" ><i class="fas fa-check"></i>¡Eliminado Correctamente!</span></h2>
+                <h2><span class="font-weight-bold"><i class="fas fa-check"></i>¡Eliminado Correctamente!</span></h2>
             </div>
             <div class="my-5" style="text-align: center;">
-                <a href="http://localhost:4200/plist" *ngIf="showSuccess"><button type="button" class="btn btn-success">Volver</button></a>
+                <a href="http://localhost:4200/plist" *ngIf="showSuccess"><button type="button"
+                        class="btn btn-success">Volver</button></a>
             </div>
         </div>
-    </div>    
+    </div>
 </div>
 <app-footer></app-footer>
 <app-modal [show]="eventsSubject.asObservable()" [body]="strResult" (close)="closeModal()"> </app-modal>
-

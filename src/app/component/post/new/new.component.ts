@@ -1,6 +1,6 @@
 import { DateTimeService } from './../../../service/datetime.service';
 import { Component, OnInit } from '@angular/core';
-import { IAdd} from 'src/app/model/model-interfaces';
+import { IAdd } from 'src/app/model/model-interfaces';
 import { PostService } from 'src/app/service/post.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -15,22 +15,16 @@ declare let $: any;
   styleUrls: ['./new.component.css']
 })
 export class NewComponent implements OnInit {
-    formularioNew: FormGroup;
-    checkeado:boolean;
-    showForm:boolean;
-    showSuccess:boolean;
-    date:string;
-    strResult: string = "";
-    id: number = 0;
-    oAdd: IAdd;
-    /*oAdd: any[];
-    titulo: string;
-    cuerpo: string;
-    fecha: string;
-    etiquetas: string;
-    visible: boolean;  */
 
-    get f() { return this.formularioNew.controls; }
+  formularioNew: FormGroup;
+  checkeado: boolean;
+  showForm: boolean;
+  showSuccess: boolean;
+  strResult: string = "";
+  id: number = 0;
+  oAdd: IAdd;
+
+  get f() { return this.formularioNew.controls; }
 
   constructor(
     private oPostService: PostService,
@@ -38,9 +32,9 @@ export class NewComponent implements OnInit {
     private oRouter: Router,
     private oActivatedRoute: ActivatedRoute,
     private oDateTimeService: DateTimeService,
-    private oLocation: Location  
+    private oLocation: Location
 
-  ) { 
+  ) {
 
     if (this.oActivatedRoute.snapshot.data.message) {
       const strUsuarioSession: string = this.oActivatedRoute.snapshot.data.message;
@@ -50,10 +44,8 @@ export class NewComponent implements OnInit {
       oRouter.navigate(['/home']);
     }
 
-    
-    
     this.showForm = true;
-    this.showSuccess = false; 
+    this.showSuccess = false;
   }
 
   ngOnInit(): void {
@@ -78,22 +70,22 @@ export class NewComponent implements OnInit {
     });
   }
 
-  onSubmit (): void {
-    
-       if (this.formularioNew) {
-        this.oAdd = {
-          id: null,
-          titulo: this.formularioNew.value.titulo,
-          cuerpo: this.formularioNew.value.cuerpo,
-          etiquetas: this.formularioNew.value.etiquetas,
-          fecha: this.oDateTimeService.getStrFecha2Send(this.formularioNew.value.fecha),
-          visible: this.formularioNew.value.visible
-        }
-        this.new();
+  onSubmit(): void {
+
+    if (this.formularioNew) {
+      this.oAdd = {
+        id: null,
+        titulo: this.formularioNew.value.titulo,
+        cuerpo: this.formularioNew.value.cuerpo,
+        etiquetas: this.formularioNew.value.etiquetas,
+        fecha: this.oDateTimeService.getStrFecha2Send(this.formularioNew.value.fecha),
+        visible: this.formularioNew.value.visible
       }
+      this.new();
+    }
   }
 
-  new = ():void => {
+  new = (): void => {
     this.oPostService.create(this.oAdd).subscribe((id: number) => {
       if (id) {
         this.id = id;
@@ -107,14 +99,14 @@ export class NewComponent implements OnInit {
 
   eventsSubject: Subject<void> = new Subject<void>();
 
-  openModal():void {
+  openModal(): void {
     this.eventsSubject.next();
   }
 
-  closeModal():void {
+  closeModal(): void {
     this.oRouter.navigate(["/view/" + this.id]);
   }
-  
+
   goBack() {
     this.oLocation.back();
   }

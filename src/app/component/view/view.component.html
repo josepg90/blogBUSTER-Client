@@ -1,9 +1,8 @@
 <app-menu></app-menu>
 <div class="header shadow mt-3 w-75">
-        <h1><span class="font-weight-bold" ><i class="far fa-eye me-3"></i> Vista del Post</span></h1>
+    <h1><span class="font-weight-bold"><i class="far fa-eye me-3"></i> Vista del Post</span></h1>
 </div>
 <div class="container my-5">
-    
     <div class="row mt-5">
         <div class="col">
             <form name="userForm" ng-show="!fallo&&!hecho">
@@ -48,20 +47,22 @@
                         <p innerHtml="{{visible | showBoolean}}"></p>
                     </div>
                 </div>
-               
+
                 <hr>
                 <div class="row justify-content-center">
                     <div class="d-grid gap-2 d-md-block mt-3 d-md-flex justify-content-md-center">
-                        <a [routerLink]="['/update/'+ id]"><button type="button" class="btn btn-success my-2 mx-1"><i class="fas fa-edit"></i>Actualizar Post</button></a>
+                        <a [routerLink]="['/update/'+ id]"><button type="button" class="btn btn-success my-2 mx-1"><i
+                                    class="fas fa-edit"></i>Actualizar Post</button></a>
                     </div>
                 </div>
                 <div class="mb-2" style="text-align: center;">
-                    <a class="btn btn-primary my-2 mx-1" [routerLink]="['/plist']"><i class="fas fa-file-alt me-2"></i> Posts</a>
-                    <a class="btn btn-primary  my-2 mx-1" (click)="goBack()"><i class="fas fa-arrow-circle-left"></i> Volver </a>
+                    <a class="btn btn-primary my-2 mx-1" [routerLink]="['/plist']"><i class="fas fa-file-alt me-2"></i>
+                        Posts</a>
+                    <a class="btn btn-primary  my-2 mx-1" (click)="goBack()"><i class="fas fa-arrow-circle-left"></i>
+                        Volver </a>
                 </div>
             </form>
-            
         </div>
-    </div>    
+    </div>
 </div>
 <app-footer></app-footer>

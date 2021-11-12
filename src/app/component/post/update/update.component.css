@@ -1,56 +1,55 @@
 .shadow {
-    padding: 10px;
-    text-align: center;
+  padding: 10px;
+  text-align: center;
 }
 
 .container {
-    width:70%;
+  width: 70%;
 }
 
 .col-form-label {
-   padding-top: 0 !important;
+  padding-top: 0 !important;
 }
 
 .col-sm-6 {
-    margin-left: 0;
- }
+  margin-left: 0;
+}
 
 * {
-    margin:auto;
+  margin: auto;
 }
 
 label {
-    font-size: large;
-    text-align: left;
-    text-shadow: 1px 1px 1px black;
-    margin-right: 25px;
-
+  font-size: large;
+  text-align: left;
+  text-shadow: 1px 1px 1px black;
+  margin-right: 25px;
 }
 
 .form-check-input {
-    width:1.5em !important;
-    height:1.5em !important;
+  width: 1.5em !important;
+  height: 1.5em !important;
 }
 
 button {
-    margin:0 auto;
+  margin: 0 auto;
 }
 
 div {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
 .container {
-    border-radius: 10px;
-    background-color: #f2f2f2;
-    padding: 0px 20px;
+  border-radius: 10px;
+  background-color: #f2f2f2;
+  padding: 0px 20px;
 }
 
-.header{
-    background-color: #6dcae7;
-    border-radius: 60%;
+.header {
+  background-color: #6dcae7;
+  border-radius: 60%;
 }
 
 h1 {
-    text-shadow: 1px 1px 1px black;
+  text-shadow: 1px 1px 1px black;
 }

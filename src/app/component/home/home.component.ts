@@ -18,34 +18,33 @@ export class HomeComponent implements OnInit {
   page: number;
   barraPaginacion: string[];
   rpp: number = 5;
-  //rpp:number;
   param: string = "fecha";
   direction: string = "ASC";
   filtro: string = "";
-  isReadMore:boolean = true;
+  isReadMore: boolean = true;
   private finishPage = 3;
   private actualPage: number;
-    
+
   constructor(
     private oPaginationService: PaginationService,
     private oPostService: PostService,
     private oRoute: ActivatedRoute,
-    
-    ) {
-      if (this.oRoute.snapshot.data.message) {
-        localStorage.setItem("user", this.oRoute.snapshot.data.message);
-      } else {
-        localStorage.clear();
-      }
- 
+
+  ) {
+    if (this.oRoute.snapshot.data.message) {
+      localStorage.setItem("user", this.oRoute.snapshot.data.message);
+    } else {
+      localStorage.clear();
+    }
+
     this.page = 1;
     this.actualPage = 1;
     this.getPage();
-    
+
   }
 
   reset() {
-    this.title = 'blogBUSTER-client-2021';
+    this.title = 'blogBUSTER-Client';
   }
 
   ngOnInit(): void {
@@ -66,13 +65,4 @@ export class HomeComponent implements OnInit {
     return false;
   }
 
-  onScroll() {
-    if (this.actualPage < this.finishPage) {
-      this.getPage();
-      this.actualPage ++;
-    } else {
-      console.log('No more lines. Finish page!');
-    }
-  }
-  
 }

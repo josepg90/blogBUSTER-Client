@@ -15,19 +15,17 @@ declare let $: any;
   styleUrls: ['./update.component.css']
 })
 export class UpdateComponent implements OnInit {
-  formularioUpdate:FormGroup;
-  oPost:IPost = null;
-  oAdd:IAdd = null;
+  formularioUpdate: FormGroup;
+  oPost: IPost = null;
+  oAdd: IAdd = null;
   id: number;
-  titulo:string;
+  titulo: string;
   cuerpo: string;
   fecha: string;
   hora: string;
-  //fechaNew: string;
-  //horaNew: string;
   etiquetas: string;
   visible: boolean;
-  checkeado:boolean;
+  checkeado: boolean;
   showForm: boolean;
   showSuccess: boolean;
   strResult: string = null;
@@ -41,7 +39,7 @@ export class UpdateComponent implements OnInit {
     private oRouter: Router,
     private oActivatedRoute: ActivatedRoute,
     private oLocation: Location,
-    private oDateTimeService: DateTimeService  
+    private oDateTimeService: DateTimeService
   ) {
 
     if (this.oActivatedRoute.snapshot.data.message) {
@@ -52,11 +50,11 @@ export class UpdateComponent implements OnInit {
       oRouter.navigate(['/home']);
     }
 
-    this.id = this.oActivatedRoute.snapshot.params.id; 
+    this.id = this.oActivatedRoute.snapshot.params.id;
     this.getPost();
-    
+
     this.showForm = true;
-    this.showSuccess = false; 
+    this.showSuccess = false;
   }
 
   ngOnInit(): void {
@@ -73,54 +71,7 @@ export class UpdateComponent implements OnInit {
     });
   }
 
-  /*getPost = () => {
-    
-    this.oPostService.getPost(this.id).subscribe((oPost:IPost) => {
-      this.titulo=oPost.titulo;
-      this.cuerpo=oPost.cuerpo;
-      this.fecha=oPost.fecha.date.month + "-" + oPost.fecha.date.month + "-" + oPost.fecha.date.day + " " + oPost.fecha.time.hour + ":" + oPost.fecha.time.minute + ":" + oPost.fecha.time.second;
-      this.etiquetas=oPost.etiquetas;
-      this.visible=oPost.visible;
-      console.log(this.visible);
-      this.formularioUpdate = <FormGroup>this.oFormBuilder.group({
-        id: [this.id],
-        titulo: [this.titulo, [Validators.required, Validators.minLength(1)]],
-        cuerpo: [this.cuerpo],
-        fecha: [this.fecha],
-        //hora: [this.hora],
-        //fechaNew: [''],
-        //horaNew: [''],
-        etiquetas: [this.etiquetas],
-        visible: [this.visible]
-      })  
-      var check = <HTMLInputElement> document.getElementById("visible");
-      if(this.visible) {
-        check.checked = true;
-      } else {
-        check.checked = false;
-      }     
-    })
-  }
-
-  onSubmit = () => {
-      const formData: any = new FormData();
-
-      var check = <HTMLInputElement> document.getElementById("visible");
-      if(check.checked) {
-        this.checkeado = true;
-      } else {
-        this.checkeado = false;
-      }
-      const newData = { id: this.formularioUpdate.get('id')!.value, titulo: this.formularioUpdate.get('titulo')!.value, cuerpo: this.formularioUpdate.get('cuerpo')!.value, fecha: "2012-04-04 14:14"/*this.formularioUpdate.get('fecha')!.value +" "+ this.formularioUpdate.get('hora')!.value*//*, etiquetas:this.formularioUpdate.get('etiquetas')!.value, visible:this.checkeado};
-      console.log("update:onSubmit: ", newData);
-      this.oPostService.update(JSON.stringify(newData)).subscribe(data => {
-        console.log(data);
-        console.log(this.fecha); 
-        console.log(this.hora);         
-       } )
-  }*/
-
-  getPost = ():void => {
+  getPost = (): void => {
     this.oPostService.getPost(this.id).subscribe((oDatos: IPost) => {
       this.oPost = oDatos;
       this.formularioUpdate = this.oFormBuilder.group({
@@ -131,18 +82,18 @@ export class UpdateComponent implements OnInit {
         fecha: [this.oDateTimeService.getStrFecha2Show(this.oPost.fecha), Validators.required],  //, Validators.pattern(this.fechaHoraPattern)
         visible: [this.oPost.visible]
       });
-      var check = <HTMLInputElement> document.getElementById("visible");
-      if(this.visible) {
+      var check = <HTMLInputElement>document.getElementById("visible");
+      if (this.visible) {
         check.checked = true;
       } else {
         check.checked = false;
-      }  
+      }
     })
   }
 
   onSubmit(): void {
-    var check = <HTMLInputElement> document.getElementById("visible");
-    if(check.checked) {
+    var check = <HTMLInputElement>document.getElementById("visible");
+    if (check.checked) {
       this.checkeado = true;
     } else {
       this.checkeado = false;
@@ -161,7 +112,7 @@ export class UpdateComponent implements OnInit {
     }
   }
 
-  update = ():void => {
+  update = (): void => {
     this.oPostService.update(this.oAdd).subscribe((result: number) => {
       if (result) {
         this.strResult = "¡¡El post se ha actualizado correctamente!!";
@@ -172,7 +123,7 @@ export class UpdateComponent implements OnInit {
     })
   }
 
-  goBack():void {
+  goBack(): void {
     this.oLocation.back();
   }
 
@@ -180,11 +131,11 @@ export class UpdateComponent implements OnInit {
 
   eventsSubject: Subject<void> = new Subject<void>();
 
-  openModal():void {
+  openModal(): void {
     this.eventsSubject.next();
   }
 
-  closeModal():void {
+  closeModal(): void {
     this.oRouter.navigate(["/view/" + this.id]);
   }
 }

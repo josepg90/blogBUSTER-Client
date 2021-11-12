@@ -24,6 +24,5 @@ export class LookComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  
+ 
 }

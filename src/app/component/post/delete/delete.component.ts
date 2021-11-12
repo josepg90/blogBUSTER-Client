@@ -13,7 +13,7 @@ import { PostService } from 'src/app/service/post.service';
 export class DeleteComponent implements OnInit {
 
   id: number;
-  titulo:string;
+  titulo: string;
   cuerpo: string;
   fecha: string;
   etiquetas: string;
@@ -23,15 +23,13 @@ export class DeleteComponent implements OnInit {
   strResult: string = "";
   strUsuarioSession: string;
 
-
-
   constructor(
     private oPostService: PostService,
     private oRoute: ActivatedRoute,
     private oRouter: Router,
     private oActivatedRoute: ActivatedRoute,
     private oDateTimeService: DateTimeService
-  ) { 
+  ) {
 
     if (this.oRoute.snapshot.data.message) {
       this.strUsuarioSession = this.oRoute.snapshot.data.message;
@@ -43,7 +41,7 @@ export class DeleteComponent implements OnInit {
 
     this.id = this.oActivatedRoute.snapshot.params.id;
     this.getPost();
-    this.showQuestion= true;
+    this.showQuestion = true;
     this.showSuccess = false;
   }
 
@@ -51,31 +49,25 @@ export class DeleteComponent implements OnInit {
   }
 
   getPost = () => {
-    
-    this.oPostService.getPost(this.id).subscribe((oPost:IPost) => {
-      this.titulo=oPost.titulo;
-      this.cuerpo=oPost.cuerpo;
-      this.fecha=this.oDateTimeService.getStrFecha2Show(oPost.fecha);
-      this.etiquetas=oPost.etiquetas;
-      this.visible=oPost.visible;
-             
+
+    this.oPostService.getPost(this.id).subscribe((oPost: IPost) => {
+      this.titulo = oPost.titulo;
+      this.cuerpo = oPost.cuerpo;
+      this.fecha = this.oDateTimeService.getStrFecha2Show(oPost.fecha);
+      this.etiquetas = oPost.etiquetas;
+      this.visible = oPost.visible;
+
     })
 
   }
 
-  /*delete(id: number) {
-    this.oPostService.delete(id).subscribe(data => {
-      console.log(data);
-    })
-  }*/
-
-  delete = ():void => {
+  delete = (): void => {
     this.oPostService.delete(this.id).subscribe((id: number) => {
       if (id) {
-        this.id=id;
-        this.strResult = "El post con ID=" + this.id + " ha sido borrado con éxito";        
+        this.id = id;
+        this.strResult = "El post con ID=" + this.id + " ha sido borrado con éxito";
       } else {
-        this.strResult = "Error en el borrado del post";        
+        this.strResult = "Error en el borrado del post";
       }
       this.openModal();
     })
@@ -85,11 +77,11 @@ export class DeleteComponent implements OnInit {
 
   eventsSubject: Subject<void> = new Subject<void>();
 
-  openModal():void {
+  openModal(): void {
     this.eventsSubject.next();
   }
 
-  closeModal():void {
+  closeModal(): void {
     this.oRouter.navigate(["/plist"]);
   }
 }

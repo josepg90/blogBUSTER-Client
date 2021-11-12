@@ -1,24 +1,25 @@
 <app-menu></app-menu>
 
 <div class="header shadow mt-3 w-75">
-    <h1><span class="font-weight-bold" ><i class="fas fa-edit me-3"></i>Actualizar Post</span></h1>
+    <h1><span class="font-weight-bold"><i class="fas fa-edit me-3"></i>Actualizar Post</span></h1>
 </div>
 <div class="container my-5">
-    
+
     <div class="row mt-5">
         <div class="col">
             <form name="userForm" [formGroup]="formularioUpdate" (ngSubmit)="onSubmit()" novalidate>
                 <div class="form-group row mt-4 mb-3">
                     <label for="id" class="col-sm-2 col-form-label">Id:</label>
                     <div class="col-sm-6">
-                        <input type="text" formControlName="id" class="form-control w-100" id="id" placeholder="{{id}}" readonly>
+                        <input type="text" formControlName="id" class="form-control w-100" id="id" placeholder="{{id}}"
+                            readonly>
                     </div>
                 </div>
                 <div class="form-group row my-3">
                     <label for="titulo" class="col-sm-2 col-form-label">Titulo:</label>
                     <div class="col-sm-6">
                         <input type="text" formControlName="titulo" class="form-control w-100" id="titulo" name="titulo"
-                        [ngClass]="{'is-valid' : f.titulo.dirty && !(f.titulo.errors?.required || f.titulo.errors?.minlength) }">
+                            [ngClass]="{'is-valid' : f.titulo.dirty && !(f.titulo.errors?.required || f.titulo.errors?.minlength) }">
                         <div *ngIf="f.titulo.dirty && f.titulo.errors?.required" class="text-danger">
                             Se debe introducir un título
                         </div>
@@ -31,61 +32,60 @@
                     <label for="cuerpo" class="col-sm-2 col-form-label">Cuerpo:</label>
                     <div class="col-sm-6">
                         <textarea class="form-control" id="cuerpo" rows="5" formControlName="cuerpo"
-                        [ngClass]="{'is-valid' : f.cuerpo.dirty && !(f.cuerpo.errors?.required) }"></textarea>
-                    <div *ngIf="f.cuerpo.dirty && f.cuerpo.errors?.required" class="text-danger">
-                        Se debe introducir un cuerpo
-                    </div>
+                            [ngClass]="{'is-valid' : f.cuerpo.dirty && !(f.cuerpo.errors?.required) }"></textarea>
+                        <div *ngIf="f.cuerpo.dirty && f.cuerpo.errors?.required" class="text-danger">
+                            Se debe introducir un cuerpo
+                        </div>
                     </div>
                 </div>
                 <div class="form-group row my-3">
                     <label for="fecha" class="col-sm-2 col-form-label">Fecha:</label>
                     <div class="col-sm-6">
                         <input type="text" name="fecha" id="fecha" formControlName="fecha"
-                        class="text ui-widget-content ui-corner-all" />
-                    <div *ngIf="f.fecha.dirty && f.fecha.errors?.required" class="text-danger">
-                        Se debe introducir una fecha correcta
-                    </div>
+                            class="text ui-widget-content ui-corner-all" />
+                        <div *ngIf="f.fecha.dirty && f.fecha.errors?.required" class="text-danger">
+                            Se debe introducir una fecha correcta
+                        </div>
                     </div>
                 </div>
-                <!--<div class="form-group row my-3">
-                    <label for="fecha" class="col-sm-2 col-form-label"  ng-show="authStatus==200">Fecha:</label>
-                    <div class="col-sm-6">
-                        <input type="date"  id="fechaNew" name="fechaNew" formControlName="fechaNew">
-                        <input type="time" id="horaNew" name="horaNew" formControlName="horaNew">
-                    </div>
-                </div>-->
                 <div class="form-group row my-3" style="text-align: center;">
                     <label for="etiquetas" class="col-sm-2 col-form-label">Etiquetas:</label>
                     <div class="col-sm-6">
                         <input type="text" class="form-control" id="etiquetas" formControlName="etiquetas"
-                        [ngClass]="{'is-valid' : f.etiquetas.dirty && !(f.etiquetas.errors?.required) }">
-                    <div *ngIf="f.etiquetas.dirty && f.etiquetas.errors?.required" class="text-danger">
-                        Se debe introducir al menos una etiqueta
-                    </div>                    </div>
+                            [ngClass]="{'is-valid' : f.etiquetas.dirty && !(f.etiquetas.errors?.required) }">
+                        <div *ngIf="f.etiquetas.dirty && f.etiquetas.errors?.required" class="text-danger">
+                            Se debe introducir al menos una etiqueta
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group row my-3">
                     <label for="etiquetas" class="col-sm-2 col-form-label">Visible:</label>
                     <div class="col-sm-6 form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="visible" [checked] = "false">
+                        <input class="form-check-input" type="checkbox" value="" id="visible" [checked]="false">
                         <label class="form-check-label" for="flexCheckChecked"></label>
                     </div>
                 </div>
-               
+
                 <hr>
                 <!--<p>Form status: {{ formularioUpdate.status | json }}</p>-->
                 <div class="row justify-content-center">
                     <div class="d-grid gap-2 d-md-block mt-3 d-md-flex justify-content-md-center">
-                        <button type="submit" class="btn btn-warning" [disabled]="formularioUpdate.invalid || formularioUpdate.pristine"><i class="fas fa-edit me-3"></i>Modificar
+                        <button type="submit" class="btn btn-warning"
+                            [disabled]="formularioUpdate.invalid || formularioUpdate.pristine"><i
+                                class="fas fa-edit me-3"></i>Modificar
                             el Post</button>
                     </div>
                 </div>
-                <div class="my-3 d-grid gap-2 d-md-block mb-5 d-md-flex justify-content-md-center" style="text-align: center;">
-                    <a class="btn btn-primary my-1 mx-1" [routerLink]="['/plist']"><i class="fas fa-file-alt me-2"></i> Posts</a>
-                    <a class="btn btn-primary my-1 mx-1" (click)="goBack()"><i class="fas fa-arrow-circle-left"></i> Volver </a>
+                <div class="my-3 d-grid gap-2 d-md-block mb-5 d-md-flex justify-content-md-center"
+                    style="text-align: center;">
+                    <a class="btn btn-primary my-1 mx-1" [routerLink]="['/plist']"><i class="fas fa-file-alt me-2"></i>
+                        Posts</a>
+                    <a class="btn btn-primary my-1 mx-1" (click)="goBack()"><i class="fas fa-arrow-circle-left"></i>
+                        Volver </a>
                 </div>
             </form>
         </div>
-    </div>    
+    </div>
 </div>
 <app-footer></app-footer>
 <app-modal [show]="eventsSubject.asObservable()" [body]="strResult" (close)="closeModal()"> </app-modal>

@@ -16,27 +16,27 @@
                                 *ngIf="!formularioLogin.get('login').errors?.minlength || formularioLogin.get('login').dirty">
                                 La longitud mínima es 5
                             </div>
-
                         </div>
                     </div>
                     <div class="col-12">
                         <label for="password" class="form-label">Contraseña</label>
                         <input type="password" formControlName="password" id="password" name="password"
                             class="form-control" placeholder="Contraseña"
-                            [class.is-invalid]="formularioLogin.get('password')!.dirty && formularioLogin.get('password')!.invalid" required>
+                            [class.is-invalid]="formularioLogin.get('password')!.dirty && formularioLogin.get('password')!.invalid"
+                            required>
                         <div class="invalid-feedback"
                             *ngIf="!formularioLogin.get('password').errors?.required || formularioLogin.get('password').dirty">
                             Por favor introduce la contraseña</div>
-                            <div class="invalid-feedback"
+                        <div class="invalid-feedback"
                             *ngIf="!formularioLogin.get('password').errors?.minlength || formularioLogin.get('password').dirty">
                             La longitud mínima es 5
                         </div>
                     </div>
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary float-end"><i class="fas fa-sign-in-alt"></i> Acceder</button>
+                        <button type="submit" class="btn btn-primary float-end"><i class="fas fa-sign-in-alt"></i>
+                            Acceder</button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
