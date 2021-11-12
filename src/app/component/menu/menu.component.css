@@ -1,5 +1,7 @@
 nav{
     background-color: #66c1f9 !important;
+    border-bottom: 2px solid #0664CB;
+    
 }
 .navbar-brand{
     text-shadow: 1px 1px 1px black;

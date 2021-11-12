@@ -1,3 +1,4 @@
+import { DateTimeService } from './../../../service/datetime.service';
 import { PaginationService } from './../../../service/pagination.service';
 import { PostService } from './../../../service/post.service';
 import { Component, OnInit } from '@angular/core';
@@ -11,7 +12,7 @@ import { Subject } from 'rxjs';
   styleUrls: ['./plist.component.css']
 })
 export class PlistComponent implements OnInit {
-
+  
   aPosts: IPost[];
   oAdd:IAdd;
   totalElements: number;
@@ -25,18 +26,20 @@ export class PlistComponent implements OnInit {
   id: number;
   titulo: string;
   cuerpo: string;
-  fecha: IFecha;
+  fecha: string;
   etiquetas: string;
   visible: boolean;
   filtro: string;
   fecha2: string;
+  fecha3: IFecha;
   searchQuery: string = '';
 
   constructor(
     private oPaginationService: PaginationService,
     private oPostService: PostService,
     private oRouter: Router,
-    private oActivatedRoute: ActivatedRoute
+    private oActivatedRoute: ActivatedRoute,
+    private oDateTimeService: DateTimeService
   ) {
     this.page = 1;
     this.rpp = 3;
@@ -64,28 +67,27 @@ export class PlistComponent implements OnInit {
   }
 
   getPost = () => {
-
+    
     this.oPostService.getPost(this.id).subscribe((oPost:IPost) => {
       this.titulo=oPost.titulo;      
       this.cuerpo=oPost.cuerpo;
-      this.fecha2=oPost.fecha.date.year + "-" + oPost.fecha.date.month + "-" + oPost.fecha.date.day + " " + oPost.fecha.time.hour + ":" + oPost.fecha.time.minute + ":" + oPost.fecha.time.second;
+      this.fecha=this.oDateTimeService.getStrFecha2Show(oPost.fecha);
       this.etiquetas=oPost.etiquetas;
       this.visible=!oPost.visible;
-      console.log(this.visible);
+      console.log(this.fecha);
       
       this.cambioVisible();
     })
-
   }
 
   cambioVisible = () => {
-    this.oAdd = { id: this.id, titulo: this.titulo, cuerpo: this.cuerpo, fecha: "2012-04-04 14:14"/*this.formularioUpdate.get('fecha')!.value +" "+ this.formularioUpdate.get('hora')!.value*/, etiquetas:this.etiquetas, visible:this.visible};
+    this.fecha2=this.oDateTimeService.getStrFecha2Send(this.fecha);
+    this.oAdd = { id: this.id, titulo: this.titulo, cuerpo: this.cuerpo, fecha: this.fecha2/*this.formularioUpdate.get('fecha')!.value +" "+ this.formularioUpdate.get('hora')!.value*/, etiquetas:this.etiquetas, visible:this.visible};
       console.log("update:onSubmit: ", this.oAdd);
       this.oPostService.update(this.oAdd).subscribe(data => {
         console.log(data);
            this.getPage();  
-       } )
-       
+       } )       
   }
 
   jumpToPage = () => {
@@ -98,13 +100,15 @@ export class PlistComponent implements OnInit {
   }
 
   new = (id: number, titulo: string, cuerpo: string, fecha: IFecha, etiquetas: string, visible: boolean):void => {
+    
       this.id=id;
       this.titulo=titulo;
       this.cuerpo=cuerpo;
-      this.fecha=fecha;
+      this.fecha=this.oDateTimeService.getStrFecha2Show(fecha);
       this.etiquetas=etiquetas;
       this.visible=visible;
       this.openModal();
+      //console.log(this.fecha3);
     
   }
 

@@ -28,3 +28,7 @@ background-color: #EFE7E5;
 .card-body {
     transition: background-color 0.4s linear 0.1s;
 }
+
+.color{
+    color: #0664CB !important;
+}

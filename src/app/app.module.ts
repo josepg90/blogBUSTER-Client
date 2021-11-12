@@ -1,3 +1,4 @@
+import { FooterComponent } from './component/footer/footer.component';
 import { ShowBoolean } from './pipe/showBoolean.pipe';
 import { ShowDateTime } from './pipe/showDateTime.pipe';
 import { TrimPipe } from './pipe/trim.pipe';
@@ -27,9 +28,8 @@ import { DateTimeService } from './service/datetime.service';
 import { LookComponent } from './component/look/look.component';
 import { ReadComponent } from './component/read/read.component';
 import { HighLightPipe } from './pipe/high-light.pipe';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { InfiniteScrollComponent } from './component/infinite-scroll/infinite-scroll.component';
 import { ReadMoreComponent } from './component/read-more/read-more.component';
+import { FormateoFechaPipe } from './pipe/formateo-fecha.pipe';
 
 
 
@@ -52,17 +52,17 @@ import { ReadMoreComponent } from './component/read-more/read-more.component';
     ModalComponent,
     LookComponent,
     ReadComponent,
-    HighLightPipe,
-    InfiniteScrollComponent,
+    HighLightPipe,    
     ReadMoreComponent,
+    FormateoFechaPipe,
+    FooterComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
-    InfiniteScrollModule
+    ReactiveFormsModule
   ],
   providers: [
     SessionService,

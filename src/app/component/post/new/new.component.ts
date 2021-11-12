@@ -50,6 +50,14 @@ export class NewComponent implements OnInit {
       oRouter.navigate(['/home']);
     }
 
+    
+    
+    this.showForm = true;
+    this.showSuccess = false; 
+  }
+
+  ngOnInit(): void {
+
     this.formularioNew = <FormGroup>this.oFormBuilder.group({
       titulo: ['', [Validators.required, Validators.minLength(2)]],
       cuerpo: ['', Validators.required],
@@ -57,12 +65,6 @@ export class NewComponent implements OnInit {
       fecha: ['', Validators.required],
       visible: ['']
     })
-    
-    this.showForm = true;
-    this.showSuccess = false; 
-  }
-
-  ngOnInit(): void {
     $('#fecha').datetimepicker({
       defaultDate: "+1w",
       numberOfMonths: 1,
@@ -77,46 +79,18 @@ export class NewComponent implements OnInit {
   }
 
   onSubmit (): void {
-    /*this.oPostService.postPost(this.oAdd).subscribe(data => {
-      this.titulo = (<HTMLInputElement>document.getElementById('titulo')).value;
-      this.cuerpo = (<HTMLInputElement>document.getElementById('cuerpo')).value;
-      this.fecha = "2021-10-27 19:04";
-      this.etiquetas = (<HTMLInputElement>document.getElementById('etiqutas')).value;
-      this.visible = true;
-      this.oAdd.push({"titulo":this.titulo, "cuerpo":this.cuerpo, "fecha":this.fecha, "etiquetas":this.etiquetas, "visible":this.visible});
-      })*/
-      const formData: any = new FormData();
-
-      var check = <HTMLInputElement> document.getElementById("visible");
-      /*if(check.checked) {
-        this.checkeado = true;
-      } else {
-        this.checkeado = false;
-      }
-      this.date = this.formularioNew.get('fecha')!.value +" "+ this.formularioNew.get('hora')!.value;
-      const newData = { titulo: this.formularioNew.get('titulo')!.value, cuerpo: this.formularioNew.get('cuerpo')!.value, fecha: this.date, etiquetas:this.formularioNew.get('etiquetas')!.value, visible: this.formularioNew.get('visible')!.value};
-      console.log("create:onSubmit: ", newData);
-      this.oPostService.create(JSON.stringify(newData)).subscribe(data => {
-        console.log(data);
-        console.log(this.formularioNew.get('fecha')!.value)
-        console.log(this.formularioNew.get('visible')!.value)
-        this.new();
-       } )*/
-
-       //this.date = this.formularioNew.get('fecha')!.value +" "+ this.formularioNew.get('hora')!.value;
-
+    
        if (this.formularioNew) {
         this.oAdd = {
           id: null,
           titulo: this.formularioNew.value.titulo,
           cuerpo: this.formularioNew.value.cuerpo,
           etiquetas: this.formularioNew.value.etiquetas,
-          fecha: "2021-10-27 19:04",
+          fecha: this.oDateTimeService.getStrFecha2Send(this.formularioNew.value.fecha),
           visible: this.formularioNew.value.visible
         }
         this.new();
       }
-
   }
 
   new = ():void => {

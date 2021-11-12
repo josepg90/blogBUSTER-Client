@@ -7,7 +7,7 @@
     
     <div class="row mt-5">
         <div class="col">
-            <form name="userForm" [formGroup]="formularioUpdate" *ngIf="showForm" (ngSubmit)="onSubmit();showForm=false;showSuccess=true;" novalidate>
+            <form name="userForm" [formGroup]="formularioUpdate" (ngSubmit)="onSubmit()" novalidate>
                 <div class="form-group row mt-4 mb-3">
                     <label for="id" class="col-sm-2 col-form-label">Id:</label>
                     <div class="col-sm-6">
@@ -72,27 +72,20 @@
                 </div>
                
                 <hr>
-                <p>Form status: {{ formularioUpdate.status | json }}</p>
-                <div class="row mb-3 justify-content-center">
+                <!--<p>Form status: {{ formularioUpdate.status | json }}</p>-->
+                <div class="row justify-content-center">
                     <div class="d-grid gap-2 d-md-block mt-3 d-md-flex justify-content-md-center">
                         <button type="submit" class="btn btn-warning" [disabled]="formularioUpdate.invalid || formularioUpdate.pristine"><i class="fas fa-edit me-3"></i>Modificar
                             el Post</button>
                     </div>
                 </div>
-                <div class="my-3" style="text-align: center;">
-                    <a class="btn btn-primary mx-2" [routerLink]="['/home']"><i class="fas fa-home me-3"></i> Página principal</a>
-                    <a class="btn btn-primary" (click)="goBack()"><i class="fas fa-arrow-circle-left"></i> Volver </a>
+                <div class="my-3 d-grid gap-2 d-md-block mb-5 d-md-flex justify-content-md-center" style="text-align: center;">
+                    <a class="btn btn-primary my-1 mx-1" [routerLink]="['/plist']"><i class="fas fa-file-alt me-2"></i> Posts</a>
+                    <a class="btn btn-primary my-1 mx-1" (click)="goBack()"><i class="fas fa-arrow-circle-left"></i> Volver </a>
                 </div>
             </form>
-                <!--<div class="shadow my-3" *ngIf="showSuccess" style="background-color:aquamarine;">
-                    <h2><span class="font-weight-bold" ><i class="fas fa-check"></i> ¡Post actualizado correctamente!</span></h2>
-                </div>
-                <div class="my-5" style="text-align: center;">
-                    <a href="http://localhost:4200/view/{{id}}"><button type="button" class="btn btn-success mx-3" *ngIf="showSuccess">Ver Post</button></a>
-                    <a href="http://localhost:4200/plist"><button type="button" class="btn btn-success" *ngIf="showSuccess">Volver</button></a>
-                </div>-->
         </div>
     </div>    
 </div>
-
+<app-footer></app-footer>
 <app-modal [show]="eventsSubject.asObservable()" [body]="strResult" (close)="closeModal()"> </app-modal>

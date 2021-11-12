@@ -6,12 +6,12 @@
             <div class="text-center">
                 <h1>bienvenidos a</h1>
                 <img class="img-fluid" src="assets/img/blogBuster600.png">
-                <h6 class="text-muted text-monospace">el blog que siempre quisiste tener, pero nunca te atreviste a
+                <h6 class="text-monospace color mt-1">el blog que siempre quisiste tener, pero nunca te atreviste a
                     programar</h6>
             </div>
         </div>
     </div>
-    <div class="row justify-content-center search-results-container" infiniteScroll [infiniteScrollDistance]="2" [scrollWindow]="false" (scrolled)="onScroll()">
+    <div class="row justify-content-center search-results-container">
         <div class="col-md">
             <div class="card my-5" *ngFor="let fila of aPosts">
                 <div class="card-body">
@@ -21,10 +21,10 @@
                 </div>
                 <div class="card-footer text-muted">
                     <div class="row justify-content-center">
-                        <div class="col-md text-start">
+                        <div class="col-md text-start color">
                             {{fila.etiquetas}}
                         </div>
-                        <div class="col-md text-end">
+                        <div class="col-md text-end color">
                             {{fila.fecha | dateTime}}
                         </div>
                     </div>
@@ -45,5 +45,5 @@
             </nav>
         </div>
     </div>
-
-<!--<app-infinite-scroll></app-infinite-scroll>-->
+</div>
+<app-footer></app-footer>

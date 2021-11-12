@@ -23,3 +23,9 @@
 .card{
     border-radius: 2%;
 }
+.card-title{
+    text-shadow: 1px 1px 1px black;
+}
+.color{
+    color: #0664CB !important;
+}

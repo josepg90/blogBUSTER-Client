@@ -6,39 +6,16 @@
       <div class="text-center">
         <h1>bienvenidos a</h1>
         <img class="img-fluid" src="assets/img/blogBuster600.png">
-        <h6 class="text-muted text-monospace">el blog que siempre quisiste tener, pero nunca te atreviste a
+        <h6 class="text-muted text-monospace color mt-1">el blog que siempre quisiste tener, pero nunca te atreviste a
           programar</h6>
       </div>
     </div>
   </div>
 
-  <app-look [titulo]="oPost.titulo" [cuerpo]="oPost.cuerpo" [fecha]="oPost.fecha" [etiquetas]="oPost.etiquetas"></app-look>
+  <app-look [titulo]="titulo" [cuerpo]="cuerpo" [fecha]="fecha" [etiquetas]="etiquetas"></app-look>
 
-  <!--<div class="row justify-content-center">
-    <div class="col-md-7">
-      <div class="card my-5">
-        <div class="card-body">
-          <h1 class="card-title my-5">{{oPost?.titulo}}</h1>
-          <p class="card-text my-5">{{oPost?.cuerpo}}</p>
-        </div>
-        <div class="card-footer text-muted">
-          <div class="row justify-content-center">
-            <div class="col-md text-start">
-              {{oPost?.etiquetas}}
-            </div>
-            <div class="col-md text-end">
-              {{oPost?.fecha | dateTime }}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>-->
-
-  <div class="d-grid gap-2 d-md-block mt-3 mb-5 d-md-flex justify-content-md-center mt-5">
-    <a class="btn btn-primary mx-2" [routerLink]="['/home']"><i class="fas fa-home"></i> Página
-      principal</a>
+  <div class="d-grid gap-2 d-md-block mb-5 d-md-flex justify-content-md-center mt-4">
     <a class="btn btn-primary mx-2" (click)="goBack()"><i class="fas fa-arrow-circle-left"></i> Volver </a>
   </div>
-
 </div>
+<app-footer></app-footer>

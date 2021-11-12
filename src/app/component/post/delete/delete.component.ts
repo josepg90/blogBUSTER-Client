@@ -1,3 +1,4 @@
+import { DateTimeService } from './../../../service/datetime.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -11,7 +12,6 @@ import { PostService } from 'src/app/service/post.service';
 })
 export class DeleteComponent implements OnInit {
 
-  ePosts: IPost[];
   id: number;
   titulo:string;
   cuerpo: string;
@@ -29,7 +29,8 @@ export class DeleteComponent implements OnInit {
     private oPostService: PostService,
     private oRoute: ActivatedRoute,
     private oRouter: Router,
-    private oActivatedRoute: ActivatedRoute
+    private oActivatedRoute: ActivatedRoute,
+    private oDateTimeService: DateTimeService
   ) { 
 
     if (this.oRoute.snapshot.data.message) {
@@ -54,7 +55,7 @@ export class DeleteComponent implements OnInit {
     this.oPostService.getPost(this.id).subscribe((oPost:IPost) => {
       this.titulo=oPost.titulo;
       this.cuerpo=oPost.cuerpo;
-      this.fecha=oPost.fecha.date.year + "-" + oPost.fecha.date.month + "-" + oPost.fecha.date.day + " " + oPost.fecha.time.hour + ":" + oPost.fecha.time.minute + ":" + oPost.fecha.time.second;
+      this.fecha=this.oDateTimeService.getStrFecha2Show(oPost.fecha);
       this.etiquetas=oPost.etiquetas;
       this.visible=oPost.visible;
              
@@ -69,15 +70,18 @@ export class DeleteComponent implements OnInit {
   }*/
 
   delete = ():void => {
-    this.oPostService.delete(this.id).subscribe((data:number) => {
-      if (data) {
-        this.strResult = "El post con ID= ha sido borrado con éxito";        
+    this.oPostService.delete(this.id).subscribe((id: number) => {
+      if (id) {
+        this.id=id;
+        this.strResult = "El post con ID=" + this.id + " ha sido borrado con éxito";        
       } else {
         this.strResult = "Error en el borrado del post";        
       }
       this.openModal();
     })
   }
+
+  //modal
 
   eventsSubject: Subject<void> = new Subject<void>();
 

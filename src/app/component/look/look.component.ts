@@ -11,13 +11,15 @@ export class LookComponent implements OnInit {
 
   @Input() titulo: string;
   @Input() cuerpo: string;
-  @Input() fecha: IFecha;
+  @Input() fecha: string;
+  @Input() fecha2: IFecha;
+
   @Input() etiquetas: string;
   
   constructor(
     private oPostService: PostService
   ) { 
-    
+    console.log(this.fecha);
   }
 
   ngOnInit(): void {

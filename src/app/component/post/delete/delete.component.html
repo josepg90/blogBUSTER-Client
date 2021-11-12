@@ -10,50 +10,50 @@
         <div class="col">
             <form name="userForm" ng-show="!fallo&&!hecho" *ngIf="showQuestion">
                 <div class="form-group row my-3">
-                    <label for="titulo" class="col-sm-2 col-form-label"  ng-show="authStatus==200">Id:</label>
+                    <label for="titulo" class="col-sm-2 col-form-label">Id:</label>
                     <div class="col-sm-6"  ng-show="authStatus==200">
                         <h5>{{id}}</h5>
                     </div>
                 </div>
                 <hr>
                 <div class="form-group row my-3">
-                    <label for="titulo" class="col-sm-2 col-form-label"  ng-show="authStatus==200">Titulo:</label>
+                    <label for="titulo" class="col-sm-2 col-form-label">Titulo:</label>
                     <div class="col-sm-6">
                         <h5 class="font-weight-bold">{{titulo}}</h5>
                     </div>
                 </div>
                 <hr>
                 <div class="form-group row my-3">
-                    <label for="cuerpo" class="col-sm-2 col-form-label"  ng-show="authStatus==200">Cuerpo:</label>
+                    <label for="cuerpo" class="col-sm-2 col-form-label">Cuerpo:</label>
                     <div class="col-sm-6">
                         <p>{{cuerpo}}</p>
                     </div>
                 </div>
                 <hr>
                 <div class="form-group row my-3">
-                    <label for="fecha" class="col-sm-2 col-form-label"  ng-show="authStatus==200">Fecha:</label>
+                    <label for="fecha" class="col-sm-2 col-form-label">Fecha:</label>
                     <div class="col-sm-6">
                         <p>{{fecha}}</p>
                     </div>
                 </div>
                 <hr>
                 <div class="form-group row my-3">
-                    <label for="etiquetas" class="col-sm-2 col-form-label"  ng-show="authStatus==200">Etiquetas:</label>
+                    <label for="etiquetas" class="col-sm-2 col-form-label">Etiquetas:</label>
                     <div class="col-sm-6">
                         <p>{{etiquetas}}</p>
                     </div>
                 </div>
                 <hr>
                 <div class="form-group row my-3">
-                    <label for="visible" class="col-sm-2 col-form-label"  ng-show="authStatus==200">Visible:</label>
+                    <label for="visible" class="col-sm-2 col-form-label">Visible:</label>
                     <div class="col-sm-6">
                         <p innerHtml="{{visible | showBoolean}}"></p>
                     </div>
                 </div>
                
                 <hr>
-                <div class="shadow my-3" style="background-color:aquamarine;">
-                    <h2 *ngIf="showQuestion"><span class="font-weight-bold" ><i class="fas fa-times me-3"></i>¿Desea eliminar este Post?</span></h2>
+                <div class="shadow my-3 bg-warning">
+                    <h2 *ngIf="showQuestion"><span class="font-weight-bold" ><i class="fas fa-exclamation-triangle me-3"></i>¿Desea eliminar este Post?</span></h2>
                 </div>
                 <div class="my-5" style="text-align: center;">
                     <button type="button" class="btn btn-success mx-3" (click)="delete(); showSuccess= true; showQuestion=false" *ngIf="showQuestion">Eliminar</button>
@@ -69,6 +69,6 @@
         </div>
     </div>    
 </div>
-
+<app-footer></app-footer>
 <app-modal [show]="eventsSubject.asObservable()" [body]="strResult" (close)="closeModal()"> </app-modal>
 

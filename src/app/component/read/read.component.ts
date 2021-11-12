@@ -1,3 +1,4 @@
+import { DateTimeService } from './../../service/datetime.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IPost } from 'src/app/model/model-interfaces';
@@ -13,11 +14,17 @@ export class ReadComponent implements OnInit {
 
   id: number = 0;
   oPost: IPost;
+  titulo: string;
+  cuerpo: string;
+  fecha: string;
+  etiquetas: string;
+  visible: boolean;
   
   constructor(
     private oActivatedRoute: ActivatedRoute,    
     private oPostService: PostService,
-    private oLocation: Location
+    private oLocation: Location,
+    private oDateTimeService: DateTimeService
   ) { 
     if (this.oActivatedRoute.snapshot.data.message) {
       localStorage.setItem("user", this.oActivatedRoute.snapshot.data.message);
@@ -35,7 +42,11 @@ export class ReadComponent implements OnInit {
 
   getOne = () => {
     this.oPostService.getPost(this.id).subscribe((oData: IPost) => {
-      this.oPost = oData;
+      this.titulo=oData.titulo;      
+      this.cuerpo=oData.cuerpo;
+      this.fecha=this.oDateTimeService.getStrFecha2Show(oData.fecha);
+      this.etiquetas=oData.etiquetas;
+      this.visible=!oData.visible;
     })
   }
   

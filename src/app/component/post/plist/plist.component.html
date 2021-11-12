@@ -92,7 +92,7 @@
                     <td class="w-10">{{fila.id}}</td>
                     <td class="w-25" [innerHtml]='fila.titulo | trim | highLight : searchQuery'></td>
                     <td class="w-25" [innerHtml]='fila.cuerpo | trim | highLight : searchQuery'></td>
-                    <td class="w-15" >{{fila.fecha | dateTime}}</td>
+                    <td class="w-15" >{{fila.fecha | formateoFecha}}</td>
                     <td class="w-20" [innerHtml]='fila.etiquetas | trim | highLight : searchQuery'></td>
                     <td class="w-5" class="centro"><button type="button" class="btn btn-primary btn-sm" 
                         innerHtml="{{fila.visible | showBoolean}}" (click)='id=fila.id;getPost();'></button></td>
@@ -111,7 +111,7 @@
         </div>
     </div>
 </div>
-
+<app-footer></app-footer>
 <app-modal [show]="eventsSubject.asObservable()" [body]="strResult" (close)="closeModal()">
     <app-look [titulo]="titulo" [cuerpo]="cuerpo" [fecha]="fecha" [etiquetas]="etiquetas"></app-look>
     <!--<table class="table table-striped">
