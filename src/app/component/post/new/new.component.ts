@@ -41,12 +41,20 @@ export class NewComponent implements OnInit {
     private oLocation: Location  
 
   ) { 
+
+    if (this.oActivatedRoute.snapshot.data.message) {
+      const strUsuarioSession: string = this.oActivatedRoute.snapshot.data.message;
+      localStorage.setItem("user", strUsuarioSession);
+    } else {
+      localStorage.clear();
+      oRouter.navigate(['/home']);
+    }
+
     this.formularioNew = <FormGroup>this.oFormBuilder.group({
-      titulo: ['', [Validators.required, Validators.minLength(1)]],
-      cuerpo: [''],
-      fecha: [''],
-      //hora: [''],
-      etiquetas: [''],
+      titulo: ['', [Validators.required, Validators.minLength(2)]],
+      cuerpo: ['', Validators.required],
+      etiquetas: ['', Validators.required],
+      fecha: ['', Validators.required],
       visible: ['']
     })
     
@@ -55,7 +63,17 @@ export class NewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    $('#fecha').datetimepicker({
+      defaultDate: "+1w",
+      numberOfMonths: 1,
+      dateFormat: 'dd-mm-yy',
+      timeFormat: 'hh:mm',
+      showAnim: "fold",
+      onClose: (dateText: string, inst: any) => {
+        this.formularioNew.controls['fecha'].setValue(dateText);
+        this.formularioNew.controls['fecha'].markAsDirty();
+      }
+    });
   }
 
   onSubmit (): void {
@@ -107,7 +125,7 @@ export class NewComponent implements OnInit {
         this.id = id;
         this.strResult = "¡¡El post se ha creado correctamente!!";
       } else {
-        this.strResult = "Error en la creación del registro";
+        this.strResult = "Error en la creación del post";
       }
       this.openModal();
     })
@@ -120,7 +138,7 @@ export class NewComponent implements OnInit {
   }
 
   closeModal():void {
-    //this.oRouter.navigate(["/view/" + this.id]);
+    this.oRouter.navigate(["/view/" + this.id]);
   }
   
   goBack() {

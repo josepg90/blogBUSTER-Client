@@ -8,33 +8,43 @@
     <div class="row mt-5">
         <div class="col">
             <form name="userForm" [formGroup]="formularioUpdate" *ngIf="showForm" (ngSubmit)="onSubmit();showForm=false;showSuccess=true;" novalidate>
-                <div class="form-group row my-3">
+                <div class="form-group row mt-4 mb-3">
                     <label for="id" class="col-sm-2 col-form-label">Id:</label>
                     <div class="col-sm-6">
-                        <input type="text" formControlName="id" class="form-control w-100" id="id" readonly>
+                        <input type="text" formControlName="id" class="form-control w-100" id="id" placeholder="{{id}}" readonly>
                     </div>
                 </div>
                 <div class="form-group row my-3">
                     <label for="titulo" class="col-sm-2 col-form-label">Titulo:</label>
                     <div class="col-sm-6">
                         <input type="text" formControlName="titulo" class="form-control w-100" id="titulo" name="titulo"
-                        [class.is-invalid]="(formularioUpdate.get('titulo')!.pristine || formularioUpdate.get('titulo')!.dirty) && formularioUpdate.get('titulo')!.invalid">
-                        <div class="invalid-feedback"
-                        *ngIf="!formularioUpdate.get('titulo').errors?.minlength || formularioUpdate.get('titulo')!.dirty">
-                        Se debe introducir un título
-                    </div>
+                        [ngClass]="{'is-valid' : f.titulo.dirty && !(f.titulo.errors?.required || f.titulo.errors?.minlength) }">
+                        <div *ngIf="f.titulo.dirty && f.titulo.errors?.required" class="text-danger">
+                            Se debe introducir un título
+                        </div>
+                        <div *ngIf="f.titulo.dirty && f.titulo.errors?.minlength" class="text-danger">
+                            El título introducido es demasiado corto
+                        </div>
                     </div>
                 </div>
                 <div class="form-group row my-3">
                     <label for="cuerpo" class="col-sm-2 col-form-label">Cuerpo:</label>
                     <div class="col-sm-6">
-                        <textarea id="cuerpo" name="comentarios" rows="3" cols="50" name="cuerpo" formControlName="cuerpo" class="form-control w-100">{{cuerpo}}</textarea>
+                        <textarea class="form-control" id="cuerpo" rows="5" formControlName="cuerpo"
+                        [ngClass]="{'is-valid' : f.cuerpo.dirty && !(f.cuerpo.errors?.required) }"></textarea>
+                    <div *ngIf="f.cuerpo.dirty && f.cuerpo.errors?.required" class="text-danger">
+                        Se debe introducir un cuerpo
+                    </div>
                     </div>
                 </div>
                 <div class="form-group row my-3">
                     <label for="fecha" class="col-sm-2 col-form-label">Fecha:</label>
                     <div class="col-sm-6">
-                        <input type="text" formControlName="fecha" class="form-control w-100" id="fecha" readonly>
+                        <input type="text" name="fecha" id="fecha" formControlName="fecha"
+                        class="text ui-widget-content ui-corner-all" />
+                    <div *ngIf="f.fecha.dirty && f.fecha.errors?.required" class="text-danger">
+                        Se debe introducir una fecha correcta
+                    </div>
                     </div>
                 </div>
                 <!--<div class="form-group row my-3">
@@ -47,12 +57,15 @@
                 <div class="form-group row my-3" style="text-align: center;">
                     <label for="etiquetas" class="col-sm-2 col-form-label">Etiquetas:</label>
                     <div class="col-sm-6">
-                        <input type="text" formControlName="etiquetas" class="form-control w-100" id="inputAddress" name="etiquetas">
-                    </div>
+                        <input type="text" class="form-control" id="etiquetas" formControlName="etiquetas"
+                        [ngClass]="{'is-valid' : f.etiquetas.dirty && !(f.etiquetas.errors?.required) }">
+                    <div *ngIf="f.etiquetas.dirty && f.etiquetas.errors?.required" class="text-danger">
+                        Se debe introducir al menos una etiqueta
+                    </div>                    </div>
                 </div>
                 <div class="form-group row my-3">
                     <label for="etiquetas" class="col-sm-2 col-form-label">Visible:</label>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 form-check">
                         <input class="form-check-input" type="checkbox" value="" id="visible" [checked] = "false">
                         <label class="form-check-label" for="flexCheckChecked"></label>
                     </div>
@@ -60,17 +73,26 @@
                
                 <hr>
                 <p>Form status: {{ formularioUpdate.status | json }}</p>
+                <div class="row mb-3 justify-content-center">
+                    <div class="d-grid gap-2 d-md-block mt-3 d-md-flex justify-content-md-center">
+                        <button type="submit" class="btn btn-warning" [disabled]="formularioUpdate.invalid || formularioUpdate.pristine"><i class="fas fa-edit me-3"></i>Modificar
+                            el Post</button>
+                    </div>
+                </div>
                 <div class="my-3" style="text-align: center;">
-                    <button type="submit" class="btn btn-success mx-3" [disabled]="formularioUpdate.invalid">Enviar</button>
-                    <a class="btn btn-primary mx-2" (click)="goBack()"><i class="fas fa-arrow-circle-left"></i> Volver </a>                </div>
+                    <a class="btn btn-primary mx-2" [routerLink]="['/home']"><i class="fas fa-home me-3"></i> Página principal</a>
+                    <a class="btn btn-primary" (click)="goBack()"><i class="fas fa-arrow-circle-left"></i> Volver </a>
+                </div>
             </form>
-                <div class="shadow my-3" *ngIf="showSuccess" style="background-color:aquamarine;">
+                <!--<div class="shadow my-3" *ngIf="showSuccess" style="background-color:aquamarine;">
                     <h2><span class="font-weight-bold" ><i class="fas fa-check"></i> ¡Post actualizado correctamente!</span></h2>
                 </div>
                 <div class="my-5" style="text-align: center;">
                     <a href="http://localhost:4200/view/{{id}}"><button type="button" class="btn btn-success mx-3" *ngIf="showSuccess">Ver Post</button></a>
                     <a href="http://localhost:4200/plist"><button type="button" class="btn btn-success" *ngIf="showSuccess">Volver</button></a>
-                </div>
+                </div>-->
         </div>
     </div>    
 </div>
+
+<app-modal [show]="eventsSubject.asObservable()" [body]="strResult" (close)="closeModal()"> </app-modal>

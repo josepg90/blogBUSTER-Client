@@ -21,23 +21,12 @@ button {
     margin:0 auto;
 }
 
-i{
-    margin-right: 10px;;
-}
-
 div {
     margin: 0 auto;
     text-align: center;
 }
-div.form-group {
-    
-    padding-left: 140px;
-}
-.col-sm-6 {
-    margin: 0px 30px !important;
-}
+
 hr {
-    width: 80%;
     margin: auto;
 }
 
@@ -45,4 +34,13 @@ hr {
     border-radius: 10px;
     background-color: #f2f2f2;
     padding: 0px 20px;
+}
+
+.header{
+    background-color: #6dcae7;
+    border-radius: 60%;
+}
+
+h1 {
+    text-shadow: 1px 1px 1px black;
 }

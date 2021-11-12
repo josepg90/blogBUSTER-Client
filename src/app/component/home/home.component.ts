@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   totalPages: number;
   page: number;
   barraPaginacion: string[];
-  rpp: number = 10;
+  rpp: number = 5;
   //rpp:number;
   param: string = "fecha";
   direction: string = "ASC";

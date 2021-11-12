@@ -14,3 +14,12 @@
 .header{
     background-color: #C1E0F7;
 }
+.card-body:hover{
+    background-color: #EFE7E5;
+    }
+.card-body{
+    transition: background-color 0.4s linear 0.1s;
+}
+.card{
+    border-radius: 2%;
+}

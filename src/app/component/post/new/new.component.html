@@ -18,17 +18,23 @@
                     <label for="titulo" class="col-sm-2 col-form-label">Titulo:</label>
                     <div class="col-sm-6">
                         <input type="text" formControlName="titulo" class="form-control w-100" id="titulo" name="titulo"
-                        [class.is-invalid]="(formularioNew.get('titulo')!.pristine || formularioNew.get('titulo')!.dirty) && formularioNew.get('titulo')!.invalid">
-                        <div class="invalid-feedback"
-                        *ngIf="!formularioNew.get('titulo').errors?.minlength || formularioNew.get('titulo')!.dirty">
+                        [ngClass]="{'is-valid' : f.titulo.dirty && !(f.titulo.errors?.required || f.titulo.errors?.minlength) }">
+                    <div *ngIf="f.titulo.dirty && f.titulo.errors?.required" class="text-danger">
                         Se debe introducir un título
+                    </div>
+                    <div *ngIf="f.titulo.dirty && f.titulo.errors?.minlength" class="text-danger">
+                        El título introducido es demasiado corto
                     </div>
                     </div>
                 </div>
                 <div class="form-group row my-3">
                     <label for="cuerpo" class="col-sm-2 col-form-label">Cuerpo:</label>
                     <div class="col-sm-6">
-                        <textarea id="cuerpo" name="comentarios" rows="3" cols="50" name="cuerpo" formControlName="cuerpo" class="form-control w-100"></textarea>
+                        <textarea id="cuerpo" name="comentarios" rows="3" cols="50" name="cuerpo" formControlName="cuerpo" class="form-control w-100"
+                        [ngClass]="{'is-valid' : f.cuerpo.dirty && !(f.cuerpo.errors?.required) }"></textarea>
+                    <div *ngIf="f.cuerpo.dirty && f.cuerpo.errors?.required" class="text-danger">
+                        Se debe introducir un cuerpo
+                    </div>
                     </div>
                 </div>
                 <div class="form-group row my-3">
@@ -36,13 +42,21 @@
                     <div class="col-sm-6">
                         <!--<input type="date"  id="fecha" name="fecha" formControlName="fecha">
                         <input type="time" id="hora" name="hora" formControlName="hora">-->
-                        <input type="text"  id="fecha" name="fecha" formControlName="fecha" class="w-100">
+                        <input type="text" name="fecha" id="fecha" formControlName="fecha"
+                        class="text ui-widget-content ui-corner-all" />
+                    <div *ngIf="f.fecha.dirty && f.fecha.errors?.required" class="text-danger">
+                        Se debe introducir una fecha correcta
+                    </div>
                     </div>
                 </div>
                 <div class="form-group row my-3">
                     <label for="etiquetas" class="col-sm-2 col-form-label">Etiquetas:</label>
                     <div class="col-sm-6">
-                        <input type="text" formControlName="etiquetas" class="form-control w-100" id="inputAddress" name="etiquetas">
+                        <input type="text" formControlName="etiquetas" class="form-control w-100" id="inputAddress" name="etiquetas"
+                        [ngClass]="{'is-valid' : f.etiquetas.dirty && !(f.etiquetas.errors?.required) }">
+                    <div *ngIf="f.etiquetas.dirty && f.etiquetas.errors?.required" class="text-danger">
+                        Se debe introducir al menos una etiqueta
+                    </div>
                     </div>
                 </div>
                 <div class="form-group row my-3">
@@ -62,12 +76,12 @@
                         principal</a>
                 </div>
             </form>
-                <div class="shadow my-3" *ngIf="showSuccess" style="background-color:aquamarine;">
+                <!--<div class="shadow my-3" *ngIf="showSuccess" style="background-color:aquamarine;">
                     <h2><span class="font-weight-bold" ><i class="fas fa-check"></i> ¡Nuevo Post añadido correctamente!</span></h2>
                 </div>
                 <div class="my-5" style="text-align: center;">
                     <a (click)="goBack()"><button type="button" class="btn btn-success" *ngIf="showSuccess"><i class="fas fa-arrow-circle-left"></i>Volver</button></a>
-                </div>
+                </div>-->
         </div>
     </div>    
 </div>

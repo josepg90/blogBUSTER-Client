@@ -64,12 +64,12 @@ export class PostService {
     return this.http.post<number>(this.sURL, newData, httpOptions)
   }
 
-  delete(id: number): Observable<Number> {
-    return this.http.delete<Number>(this.sURL + "?id=" + id, httpOptions)
+  delete(id: number): Observable<number> {
+    return this.http.delete<number>(this.sURL + "?id=" + id, httpOptions)
   }
 
-  update(newData: string): Observable<String> {
-    return this.http.put<String>(this.sURL, newData, httpOptions)
+  update(oAdd: IAdd): Observable<number> {
+    return this.http.put<number>(this.sURL, oAdd, httpOptions)
   }
 
 }

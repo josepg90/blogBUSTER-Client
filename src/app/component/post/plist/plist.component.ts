@@ -1,7 +1,7 @@
 import { PaginationService } from './../../../service/pagination.service';
 import { PostService } from './../../../service/post.service';
 import { Component, OnInit } from '@angular/core';
-import { IFecha, IPage, IPost } from 'src/app/model/model-interfaces';
+import { IAdd, IFecha, IPage, IPost } from 'src/app/model/model-interfaces';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 
@@ -13,6 +13,7 @@ import { Subject } from 'rxjs';
 export class PlistComponent implements OnInit {
 
   aPosts: IPost[];
+  oAdd:IAdd;
   totalElements: number;
   totalPages: number;
   page: number;
@@ -78,9 +79,9 @@ export class PlistComponent implements OnInit {
   }
 
   cambioVisible = () => {
-    const newData = { id: this.id, titulo: this.titulo, cuerpo: this.cuerpo, fecha: "2012-04-04 14:14"/*this.formularioUpdate.get('fecha')!.value +" "+ this.formularioUpdate.get('hora')!.value*/, etiquetas:this.etiquetas, visible:this.visible};
-      console.log("update:onSubmit: ", newData);
-      this.oPostService.update(JSON.stringify(newData)).subscribe(data => {
+    this.oAdd = { id: this.id, titulo: this.titulo, cuerpo: this.cuerpo, fecha: "2012-04-04 14:14"/*this.formularioUpdate.get('fecha')!.value +" "+ this.formularioUpdate.get('hora')!.value*/, etiquetas:this.etiquetas, visible:this.visible};
+      console.log("update:onSubmit: ", this.oAdd);
+      this.oPostService.update(this.oAdd).subscribe(data => {
         console.log(data);
            this.getPage();  
        } )
